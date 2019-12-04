@@ -1,0 +1,134 @@
+﻿@model IEnumerable<JooleUI.Models.Products>
+
+@{
+    ViewBag.Title = "GridView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GridView</h2>
+
+<table class="table" border="1">
+    <tr>
+        <th>
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Image)
+            </td>
+        }
+    </tr>
+    <tr style="background-color:lightsteelblue">
+        <th>Description</th>
+        @foreach (var item in Model)
+        {
+            <td></td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacturer_Name)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer_Name)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Name)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Name)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Series)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Series)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+        }
+    </tr>
+    <tr style="background-color:lightsteelblue">
+        <th>Type</th>
+        @foreach (var item in Model)
+        {
+            <td></td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UseType)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.UseType)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Application)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Application)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MountingLocation)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.MountingLocation)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelYear)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelYear)
+            </td>
+        }
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Charecteristics)
+        </th>
+        @foreach (var item in Model)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Charecteristics)
+            </td>
+        }
+    </tr>
+</table>

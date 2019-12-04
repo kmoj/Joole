@@ -1,0 +1,143 @@
+﻿@model IEnumerable<JooleUI.Models.Products>
+@{
+    ViewBag.Title = "Summa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    th {
+        background-color: ghostwhite
+    }
+</style>
+
+<div class="container-fluid" style="padding:0px">
+    <div style="margin-top:1%;background:linear-gradient(blue,white)" class="row">
+        <img  src="~/Images/Joole.png" style="float:left;width:200px" />
+        <div class="container"style="margin-top:20px;">
+            @using (@Html.BeginForm())
+            {
+                @Html.DropDownList("Category", null, "", new { @class = "btn btn-secondary dropdown-toggle" })
+                <input id="searchBox" style="width:250px" name="term" />
+                <input type="submit" value="Search" class="btn btn-primary" />
+            }
+        </div>
+    </div>
+    <div class="col-md-12" style="display:inline;background-color:lightgrey;padding-bottom:20px">
+        <div style="margin-left:60px;margin-top:20px;float:left;">
+            <label>Product Summary</label>
+            <label style="margin-left:30px">Product Details</label>
+            <label style="margin-left:30px">Product Documentation</label>
+            <label style="margin-left:30px">Contact</label>
+        </div>
+    </div>
+    <div class="col-md-12" style="display:inline-block;background-color:white;">
+        <h3>Product Summary</h3>
+        <div style="float:left;text-align:left;width:50%;">
+            <table class="table" border="1">
+                <tbody id="tbody1"></tbody>
+            </table>
+            <table class="table" border="1">
+                <tbody id="tbody2"></tbody>
+            </table>
+        </div>
+        <div style="float:right;text-align:left;width:50%;">
+            <table class="table" border="1">
+                <tbody id="tbody3"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    @section scripts{
+        <script>
+            
+                //console.log(idPAss);
+                $("#searchBox").autocomplete({
+                    source: function (request, response) {
+                        var dat = JSON.stringify({
+                            'term': $("#searchBox").val(),
+                            'Category': $("#Category").val(),
+
+                        });
+                        $.ajax({
+                            data: {
+                                'term': $("#searchBox").val(),
+                                'Category': $("#Category").val()
+                            },
+                            url: '@Url.Action("Autocomplete","Search")',
+                            dataType: "json",
+                            contentType: "application/json;charset=utf-8",
+                            success: function (data) {
+                                var parsed = JSON.parse(data);
+                                var newArray = [];
+                                var i = 0;
+                                $.each(parsed, function (key, val) {
+                                    newArray[i] = val;
+                                    i++;
+                                });
+                                console.log(newArray);
+                                response(newArray);
+                            },
+                            error: response
+                        });
+                        console.log(response);
+                    },
+                    minLength: 1
+                });
+
+            $(document).ready(function () {
+                console.log("Hellowthere");
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Summ",
+                    data: "",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var i = 0;
+                        var dats = JSON.parse(response);
+                        i = i + 1;
+                        $.each(dats, function (key, val) {
+                            console.log(val.Product_Name);
+                            $("#tbody1").append("<tr id='thz' ><th colspan='2'>Description</th></tr><tr><th>Product_Name</th><td>" + val.Product_Name + "</td></tr><tr><th>Series</th><td> " + val.Series + "</td></tr><tr><th>Manufacturer Name</th><td> " + val.Manufacturer_Name + "</td></tr>");
+                            $("#tbody3").append("<tr id='thy' ><th colspan='3'>Technical Specification</th></tr>");
+                            var obs = JSON.parse(val.Object);
+                            var k = 0;
+                            $.each(obs, function (keys, vale) {
+                                k = k + 1;
+                                if ($("#" + keys).length == 0)
+                                    $("#tbody3").append("<tr id='" + k + "'><th>" + keys + "</th></tr>");
+                                var j = 0;
+                                if (obs[keys].length > 1) {
+                                    while (j < obs[keys].length) {
+                                        $('#' + k).append("<td id = 'tdf'>" + obs[keys][j] + "</td>");
+                                        j++;
+                                        console.log(obs[keys]);
+                                    }
+                                } else {
+                                    $('#' + k).append("<td colspan='2' id = 'tdf'>" + obs[keys] + "</td>");
+                                }
+                                console.log(obs[keys]);
+
+                            });
+                            $("#tbody2").append("<tr id='thz' ><th colspan='2'>Type</th></tr><tr><th>Model</th><td> " + val.Model + "</td></tr><tr id='th" + i + "'><th>Model Year</th><td> " + val.ModelYear + "</td></tr><tr id='th" + i + "'><th>Applications</th>  <td> " + val.Application + "</td> </tr><tr id='th" + i + "'><th>Mounting Location</th> <td> " + val.MountingLocation + "</td></tr><tr id='th" + i + "'><th>Use Type</th><td> " + val.UseType + "</td></tr>");
+                        });
+                        console.log(response + "Hello");
+                    },
+                    failure: function (response) {
+                        console.log(response + "Hello1");
+                    },
+                    error: function (response) {
+                        console.log(response + "Hello2");
+                        var dats = JSON.parse(response);
+                        $.each(dats, function (key, val) {
+                            $("tbody").append("<tr><td id = 'tdf" + i + "'>" + val.Product_ID + "</td>" +
+                                "<td id = 'tdl" + i + "'>" + val.Manufacturer_Name + "</td>" +
+                                "<td id = 'tde" + i + "'>" + val.Series + "</td>" +
+                                "<td id = 'tdlo" + i + "'>" + val.Model + "</td></tr>");
+                        });
+                    }
+                });
+            });
+
+        </script>
+    }
