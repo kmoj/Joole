@@ -57,7 +57,7 @@ namespace Services
             }
         }
 
-        public void createUser(string uname, string uemail, string upass)
+        public void createUser(string uname, string uemail, string upass, string uimageUlr)
         {
             tblUser temp = new tblUser();
             temp.User_Name = uname;
@@ -65,7 +65,7 @@ namespace Services
             temp.User_Password = upass;
             //byte[] imgdata = System.IO.File.ReadAllBytes(HttpContext.Current.Server.MapPath("C:\\Users\\thekm\\Desktop\\Joole\\Joole-developer\\Dataentitites\\JooleUI\\Images\\52.jpg));
             //temp.User_Image = imgdata;
-            temp.User_Image = System.Text.Encoding.UTF8.GetBytes("1");
+            temp.User_Image = uimageUlr;
             temp.Credential_ID = 1;
             uow.users.add(temp);
         }

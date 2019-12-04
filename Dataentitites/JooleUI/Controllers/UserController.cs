@@ -19,8 +19,7 @@ namespace JooleUI.Controllers
         [HttpGet]
         public ActionResult LoginPage()
         {
-            UserLogin temp = new UserLogin();
-            return View(temp);
+            return View(new LoginPage());
         }
 
         /*
@@ -28,11 +27,9 @@ namespace JooleUI.Controllers
          * This method will retrive the login information from user and check if the login is accurate
          */
         [HttpPost]
-        public ActionResult LoginPage(UserLogin temp)
+        public ActionResult LoginPage(LoginPage temp)
         {
             Service serv = new Service();
-            if (ModelState.IsValid)
-            {
                     if (serv.authentication(temp.Login_Name, temp.User_Password))
                     {
                         Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
@@ -44,36 +41,40 @@ namespace JooleUI.Controllers
                         temp.LoginErrorMessage = "Incrrect username or password.";
                         return View("LoginPage", temp);
                     }
-            }
+         
             return View();
         }
 
-        public JsonResult CreateUserRequest(string uname, string uemail, string upass)
+        //public JsonResult CreateUserRequest(string uname, string uemail, string upass)
+        //{
+        //    string c = Server.MapPath("Images");
+        //    var file = Request.Files;
+        //    //string path = Path.Combine(Server.MapPath("~/Images/Users"), Path.GetFileName(file.FileName));
+        //    Service serv = new Service();
+        //    serv.createUser(uname, uemail, upass);
+
+        //    var chak = JsonConvert.SerializeObject("OK");
+
+        //    return Json(chak, JsonRequestBehavior.AllowGet);
+        //}
+
+        public ActionResult FileUploads(LoginPage temp)
         {
-            string c = Server.MapPath("Images");
-            var file = Request.Files;
-            //string path = Path.Combine(Server.MapPath("~/Images/Users"), Path.GetFileName(file.FileName));
             Service serv = new Service();
-            serv.createUser(uname, uemail, upass);
+            var imageUrl = "/Images/User/default.png";
 
-            var chak = JsonConvert.SerializeObject("OK");
-
-            return Json(chak, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult FileUploads(string qqfile)
-        {
-            foreach (string file in Request.Files)
+            if (temp.RegisterUserImage != null && temp.RegisterUserImage.ContentLength > 0)
             {
-                HttpPostedFileBase uploadFile = Request.Files[file] as HttpPostedFileBase;
-                if (uploadFile != null && uploadFile.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(uploadFile.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    uploadFile.SaveAs(path);
-                }
+                var uploadDir = "~/Images/User/";
+                DateTime dateime = DateTime.UtcNow;
+                string imageName = dateime.ToString("yyyyMMddHHmmssffff") + temp.RegisterUserImage.FileName;
+                
+                var imagePath = Path.Combine(Server.MapPath(uploadDir), imageName);
+                imageUrl = Path.Combine(uploadDir, imageName);
+                temp.RegisterUserImage.SaveAs(imagePath);
             }
-            return RedirectToAction("User");
+            serv.createUser(temp.RegisterUsername, temp.RegisterEmail, temp.RegisterPassword, imageUrl.TrimStart('~'));
+            return RedirectToAction("/");
         }
     }
 }
