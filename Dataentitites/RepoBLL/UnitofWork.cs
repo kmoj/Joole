@@ -29,12 +29,11 @@ namespace RepoBLL
         public IUser users => new UserRepo(context);
         public ISearchtblCategory categorySearch => new SearchRepo(context);
         public ISearchtblSubCategory subCategorySearch => new SearchRepo(context);
-
         public IManufacturer manu => new ManufacturerRepo(context);
-
         public IProductType prodtype => new ProductTypeRepo(context);
         public IProduct products => new ProductRepo(context);
         public IType types => new TypeRepo(context);
+        public IFanProductRepo fanProduct => new FanProductRepo(context);
 
     }
 }

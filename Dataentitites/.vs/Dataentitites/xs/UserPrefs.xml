@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{24D24F44-DDBF-436A-8F5B-1A56965E808F}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RepoBLL/SearchRepo.cs">
+    <Files>
+      <File FileName="JooleUI/Views/Product/Summary.cshtml" Line="1" Column="1" />
+      <File FileName="JooleUI/Views/Product/Filter.cshtml" Line="86" Column="7" />
+      <File FileName="JooleUI/Scripts/src/utils/getBoundaries.js" Line="1" Column="1" />
+      <File FileName="JooleUI/Scripts/src/utils/getBordersSize.js" Line="1" Column="1" />
+      <File FileName="JooleUI/Views/Shared/_Layout.cshtml" Line="7" Column="28" />
+      <File FileName="RepoBLL/FilterFanRepo.cs" Line="57" Column="8" />
+      <File FileName="RepoBLL/ProductRepo.cs" Line="41" Column="91" />
+      <File FileName="RepoBLL/UnitofWork.cs" Line="34" Column="62" />
+      <File FileName="Services/Service.cs" Line="71" Column="10" />
+      <File FileName="RepoBLL/FanProductRepo.cs" Line="68" Column="14" />
+      <File FileName="Dataentitites/tblProduct.cs" Line="29" Column="50" />
+      <File FileName="RepoBLL/SearchRepo.cs" Line="1" Column="1" />
+      <File FileName="RepoBLL/ProductTypeRepo.cs" Line="1" Column="1" />
+      <File FileName="JooleUI/Models/ProductVM.cs" Line="1" Column="1" />
+      <File FileName="JooleUI/Models/Products.cs" Line="1" Column="1" />
+      <File FileName="JooleUI/Models/Search.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Dataentitites" expanded="True">
+            <Node name="Dataentitites" expanded="True" />
+            <Node name="JooleUI" expanded="True" />
+            <Node name="RepoBLL" expanded="True">
+              <Node name="SearchRepo.cs" selected="True" />
+            </Node>
+            <Node name="Services" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Dataentitites PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

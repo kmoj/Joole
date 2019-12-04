@@ -11,9 +11,8 @@ namespace Services
 {
     public class Service
     {
-        
+
         static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient; provider connection string='data source=DESKTOP-EROQ1RP\\SQLEXPRESS;initial catalog=Joole;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'";
-        //static string vals = "'Data Source=DESKTOP-EROQ1RP\\SQLEXPRESS;Initial Catalog=TropicalServer;Integrated Security=True' providerName='System.Data.SqlClient'";
         static DbContext context = new DbContext(vals);
 
         UnitofWork uow = new UnitofWork(context);
@@ -51,7 +50,8 @@ namespace Services
                         return false;
                     }
                 }
-            }else
+            }
+            else
             {
                 return false;
             }
@@ -69,7 +69,7 @@ namespace Services
             temp.Credential_ID = 1;
             uow.users.add(temp);
         }
-        
+
         /*
          * This method will take username and email to perform the query and
          * return filtered list based on the given paramenter
@@ -83,7 +83,7 @@ namespace Services
             if (checker(uname) == "email")
             {
                 temp.User_Email = uname;
-                
+
             }
             else
             {
@@ -164,7 +164,7 @@ namespace Services
         {
 
             var a = uow.products.Find(c);
-           
+
             return a;
         }
 
@@ -195,5 +195,11 @@ namespace Services
         {
             return uow.types.DataSet(filter);
         }
+
+        public IQueryable<tblProduct> getFanFilter(string filter, int[] props)
+        {
+            return uow.fanProduct.SearchByFilter(filter, props);
+        }
+
     }
 }

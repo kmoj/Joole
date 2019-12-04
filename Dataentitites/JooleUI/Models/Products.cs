@@ -21,5 +21,10 @@ namespace JooleUI.Models
         public string Application { get; internal set; }
         public string UseType { get; internal set; }
         public string Object { get; set; }
+        public int AirFlow { get; set; }
+        public int MaxPower { get; set; }
+        public int SoundAtMax { get; set; }
+        public int FanSweepDiameter { get; set; }
+
     }
 }
