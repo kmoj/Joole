@@ -12,15 +12,19 @@ namespace JooleUI.Controllers
 {
     public class UserController : Controller
     {
-        /*
-         * 
+        
+        public ActionResult Index()
+        {
+            return View("Login");
+        }
+        /* 
          * This method will be called by the page when the user load the page at first. 
          */
         [HttpGet]
-        public ActionResult LoginPage()
+        public PartialViewResult Login()
         {
             UserLogin temp = new UserLogin();
-            return View(temp);
+            return PartialView(temp);
         }
 
         /*
@@ -28,9 +32,10 @@ namespace JooleUI.Controllers
          * This method will retrive the login information from user and check if the login is accurate
          */
         [HttpPost]
-        public ActionResult LoginPage(UserLogin temp)
+        public ActionResult Login(UserLogin temp)
         {
             Service serv = new Service();
+
             if (ModelState.IsValid)
             {
                     if (serv.authentication(temp.Login_Name, temp.User_Password))
@@ -42,10 +47,15 @@ namespace JooleUI.Controllers
                     else
                     {
                         temp.LoginErrorMessage = "Incrrect username or password.";
-                        return View("LoginPage", temp);
+                        return View("Login", temp);
                     }
             }
-            return View();
+            return PartialView();
+        }
+
+        public PartialViewResult Register()
+        {
+            return PartialView();
         }
 
         public JsonResult CreateUserRequest(string uname, string uemail, string upass)

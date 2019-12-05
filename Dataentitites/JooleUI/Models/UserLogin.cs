@@ -11,14 +11,15 @@ namespace JooleUI.Models
 
         //Login_Name property for the object
         [Required(ErrorMessage = "This field is required")]
-        [Display(Name ="Username or Email")]
+        [Display(Name ="Username")]
         public string Login_Name { get; set; }
 
 
         //password propery for the object
-        [Required(ErrorMessage = "This field is required")]
-        [Display(Name ="Password")]
+        [Required]
+        [StringLength(255, ErrorMessage = "The {0} must be at lease {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string User_Password { get; set; }
 
         //Error message propery for the object

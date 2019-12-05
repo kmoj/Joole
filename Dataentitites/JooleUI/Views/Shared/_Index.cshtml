@@ -1,0 +1,16 @@
+@{ Layout = "../Shared/_Layout.cshtml"; }
+
+@Styles.Render("~/CSS/UserPageStyle.css")
+
+<div id="cover">
+    <div id="cover-caption">
+        <div class="row justify-content-center text-white">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10" id="formContainer">
+                <div class="text-center" id="signinBoxTitle">
+                    <h1 class="display-4  text-truncate" >@ViewBag.Title</h1>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
