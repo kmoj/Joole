@@ -53,7 +53,15 @@ namespace JooleUI.Controllers
             return PartialView();
         }
 
+        [HttpGet]
         public PartialViewResult Register()
+        {
+            UserRegister user = new UserRegister();
+            return PartialView(user);
+        }
+
+        [HttpPost]
+        public PartialViewResult Register(UserRegister user)
         {
             return PartialView();
         }

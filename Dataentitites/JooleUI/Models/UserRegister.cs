@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Joole.Models
+namespace JooleUI.Models
 {
     public class UserRegister
     {
         [Display(Name = "Select a picture")]
         [DataType(DataType.Upload)]
-        public string userImgUrl { get; set; }
+        public HttpPostedFileBase userImgUrl { get; set; }
 
         [Required]
         [Display(Name = "Username")]

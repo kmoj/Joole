@@ -12,7 +12,7 @@ namespace JooleUI.Models
         public int Product_ID { get; set; }
         public string Manufacturer_Name { get; set; }
         public string Product_Name { get; set; }
-        public byte[] Product_Image { get; set; }
+        public string Product_Image { get; set; }
         public string Series { get; set; }
         public string Charecteristics { get; set; }
         public string Model { get; set; }

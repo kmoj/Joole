@@ -12,7 +12,7 @@ namespace Services
     public class Service
     {
         
-        static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient; provider connection string='data source=DESKTOP-EROQ1RP\\SQLEXPRESS;initial catalog=Joole;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'";
+        static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient; provider connection string='data source=DESKTOP-LISUM74\\SQLEXPRESS;initial catalog=Joole;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'";
         //static string vals = "'Data Source=DESKTOP-EROQ1RP\\SQLEXPRESS;Initial Catalog=TropicalServer;Integrated Security=True' providerName='System.Data.SqlClient'";
         static DbContext context = new DbContext(vals);
 
@@ -65,7 +65,7 @@ namespace Services
             temp.User_Password = upass;
             //byte[] imgdata = System.IO.File.ReadAllBytes(HttpContext.Current.Server.MapPath("C:\\Users\\thekm\\Desktop\\Joole\\Joole-developer\\Dataentitites\\JooleUI\\Images\\52.jpg));
             //temp.User_Image = imgdata;
-            temp.User_Image = System.Text.Encoding.UTF8.GetBytes("1");
+            temp.User_Image = "d";
             temp.Credential_ID = 1;
             uow.users.add(temp);
         }

@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="85e9eeb4a33b4defbad4d72757f3ac16" Name="Diagram1" ZoomLevel="83">
-        <EntityTypeShape EntityType="JooleModel.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblCategory" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblCredential" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblManufacturer" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblProduct" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblSubCategory" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblType" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="JooleModel.tblUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="JooleModel.FK_tblSubCategory_tblCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="JooleModel.FK_tblUser_tblCredential" ManuallyRouted="false" />
-        <AssociationConnector Association="JooleModel.FK_tblManufacturer_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="JooleModel.FK_tblProduct_tblManufacturer" ManuallyRouted="false" />
-        <AssociationConnector Association="JooleModel.FK_tblProduct_tblSubCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="JooleModel.FK_tblProduct_tblType" ManuallyRouted="false" />
+      <Diagram DiagramId="92bae15557e947a982609d29fb7d2be2" Name="Diagram1">
+        <EntityTypeShape EntityType="Model1.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblCategory" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblCredential" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblManufacturer" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblProduct" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblSubCategory" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblType" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.tblUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="Model1.FK_tblSubCategory_tblCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_tblUser_tblCredential" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_tblManufacturer_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_tblProduct_tblManufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_tblProduct_tblSubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_tblProduct_tblType" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
