@@ -11,8 +11,8 @@ namespace Services
 {
     public class Service
     {
-        
-        static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient; provider connection string='data source=DESKTOP-EROQ1RP\\SQLEXPRESS;initial catalog=Joole;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'";
+        static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.5;initial catalog=JooleJLTY;persist security info=True;user id=T_User;password=us1;MultipleActiveResultSets=True;App=EntityFramework'";
+        //static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient; provider connection string='data source=DESKTOP-EROQ1RP\\SQLEXPRESS;initial catalog=Joole;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'";
         //static string vals = "'Data Source=DESKTOP-EROQ1RP\\SQLEXPRESS;Initial Catalog=TropicalServer;Integrated Security=True' providerName='System.Data.SqlClient'";
         static DbContext context = new DbContext(vals);
 

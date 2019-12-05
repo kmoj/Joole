@@ -155,22 +155,9 @@ namespace JooleUI.Controllers
                 val.MountingLocation = c.MountingLocation;
                 va.Add(val);
             }
-            //var outs = JsonConvert.SerializeObject(va);
-            //return Json(outs, JsonRequestBehavior.AllowGet);
             return va;
 
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Summary(string searchString)
-        //{
-        //    Service serv = new Service();
-
-        //    string vals = "Products found: " + serv.ProductSearch(searchString);
-        //    ViewBag.Message = vals;
-
-        //    return View(searchString);
-        //}
     }
 }

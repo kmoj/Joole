@@ -23,6 +23,11 @@ namespace Dataentitites
         public string Model { get; set; }
         public int ProductTypeID { get; set; }
         public string Characteristics { get; set; }
+        public int AirFLow { get; set; }
+        public int PowerMax { get; set; }
+        public int PowerMin { get; set; }
+        public int MaxSpeedSound { get; set; }
+        public int SweepDiameter { get; set; }
     
         public virtual tblManufacturer tblManufacturer { get; set; }
         public virtual tblSubCategory tblSubCategory { get; set; }

@@ -52,6 +52,11 @@
           <Property Name="Model" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="ProductTypeID" Type="int" Nullable="false" />
           <Property Name="Characteristics" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AirFLow" Type="int" Nullable="false" />
+          <Property Name="PowerMax" Type="int" Nullable="false" />
+          <Property Name="PowerMin" Type="int" Nullable="false" />
+          <Property Name="MaxSpeedSound" Type="int" Nullable="false" />
+          <Property Name="SweepDiameter" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSubCategory">
           <Key>
@@ -246,6 +251,11 @@
           <Property Name="Model" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
           <Property Name="Characteristics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AirFLow" Type="Int32" Nullable="false" />
+          <Property Name="PowerMax" Type="Int32" Nullable="false" />
+          <Property Name="PowerMin" Type="Int32" Nullable="false" />
+          <Property Name="MaxSpeedSound" Type="Int32" Nullable="false" />
+          <Property Name="SweepDiameter" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblManufacturer" Relationship="Self.FK_tblProduct_tblManufacturer" FromRole="tblProduct" ToRole="tblManufacturer" />
           <NavigationProperty Name="tblSubCategory" Relationship="Self.FK_tblProduct_tblSubCategory" FromRole="tblProduct" ToRole="tblSubCategory" />
           <NavigationProperty Name="tblType" Relationship="Self.FK_tblProduct_tblType" FromRole="tblProduct" ToRole="tblType" />
@@ -448,6 +458,11 @@
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="Characteristics" ColumnName="Characteristics" />
+                <ScalarProperty Name="AirFLow" ColumnName="AirFLow" />
+                <ScalarProperty Name="PowerMax" ColumnName="PowerMax" />
+                <ScalarProperty Name="PowerMin" ColumnName="PowerMin" />
+                <ScalarProperty Name="MaxSpeedSound" ColumnName="MaxSpeedSound" />
+                <ScalarProperty Name="SweepDiameter" ColumnName="SweepDiameter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
