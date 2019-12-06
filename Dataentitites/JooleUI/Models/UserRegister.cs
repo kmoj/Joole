@@ -8,7 +8,7 @@ namespace JooleUI.Models
 {
     public class UserRegister
     {
-        [Display(Name = "Select a picture")]
+        [Display(Name = "Image")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase userImgUrl { get; set; }
 
@@ -23,13 +23,15 @@ namespace JooleUI.Models
         [Required]
         [StringLength(255, ErrorMessage = "The {0} must be at lease {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name ="Password")]
         public string userPassword { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "The password you entered do not match.")]
+        [Compare("userPassword", ErrorMessage = "The password you entered do not match.")]
         [Display(Name = "Confirm Password")]
         public string confirmPassword { get; set; }
+
+        public string RegisterErrorMessage { get; set; }
 
     }
 }

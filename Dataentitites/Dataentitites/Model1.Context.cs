@@ -13,10 +13,10 @@ namespace Dataentitites
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class JooleEntities1 : DbContext
+    public partial class JooleJLTYEntities : DbContext
     {
-        public JooleEntities1()
-            : base("name=JooleEntities1")
+        public JooleJLTYEntities()
+            : base("name=JooleJLTYEntities")
         {
         }
     

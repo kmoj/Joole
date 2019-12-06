@@ -17,8 +17,11 @@
                 @Html.ActionLink("Product", "Index", "Product", new { @class = "nav-link" })
             </li>
         </ul>
-        <a href="@Url.Action("Login", "User" )" class="nav-link">Sign In</a>
-        <a href="@Url.Action("Register", "User" )" class="nav-link">Sign Up</a>
+        <ul >
+            <img src="@ViewBag.userImgUrl" alt="@ViewBag.userName"/>
+            <span>@ViewBag.userName</span>
+        </ul>
+        <a href="@Url.Action("LogOut", "User" )" class="nav-link">Sign Out</a>
     </div>
 </div>
 @RenderBody();

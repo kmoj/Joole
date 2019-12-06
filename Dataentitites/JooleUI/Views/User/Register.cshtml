@@ -1,4 +1,5 @@
 @model JooleUI.Models.UserRegister
+
 @{
     Layout = "../Shared/_Index.cshtml";
 }
@@ -7,72 +8,58 @@
     ViewBag.Title = "Register with Us";
 }
 
-<link href="@Url.Content("~/Content/fileuploader.css")" rel="stylesheet" type="text/css" />
-<script src="@Url.Content("~/Scripts/fileuploader.js")" type="text/javascript"></script>
 
-@using (Html.BeginForm("FileUploads", "User", FormMethod.Post))
-{
-    <div class="form-group row">
-        <label for="signUpUsername" class="col-md-4 col-form-label">Set your image: </label>
-        <div class="col-md-6">
-            <div class="input-group">
-                <input type="file" id="registerFile">
+    <form action="@Url.Action("Register","User")" method="post" enctype="multipart/form-data">
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.userImgUrl, new { @class = "col-md-4 col-form-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "form-control", id = "registerUsername" })
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 offset-md-4">
-            <button class="btn btn-primary" type="submit">Upload</button>
+
+        <div class="form-group row">
+            <label for="registerUsername" class="col-md-4 col-form-label">Username: </label>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.userName, new { @class = "form-control", id = "registerUsername" })
+            </div>
         </div>
-    </div>
-    
-}
+        <div class="form-group row">
+            <label for="registerEmail" class="col-md-4 col-form-label">Email: </label>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.userEmail, new { @class = "form-control", id = "registerEmail" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="registerPassword" class="col-md-4 col-form-label">Password: </label>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.userPassword, new { @class = "form-control", id = "registerPassword" })
+            </div>
+        </div>
 
-<div class="row">
-    <div class="col-md-8 offset-md-4">
-        <img id="imgUpload"  />
-    </div>
-</div>
+        <div class="form-group row">
+            <label for="registerConfirmPassword" class="col-md-4 col-form-label">Comfirm Password: </label>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.confirmPassword, new { @class = "form-control", id = "comfirmPassword" })
+            </div>
+        </div>
 
-<div class="form-group row">
-    <label for="registerUsername" class="col-md-4 col-form-label">Username: </label>
-    <div class="col-md-8">
-        <input type="text" class="form-control" id="registerUsername">
-    </div>
-</div>
-<div class="form-group row">
-    <label for="registerEmail" class="col-md-4 col-form-label">Email: </label>
-    <div class="col-md-8">
-        <input type="email" class="form-control" id="registerEmail">
-    </div>
-</div>
-<div class="form-group row">
-    <label for="registerPassword" class="col-md-4 col-form-label">Password: </label>
-    <div class="col-md-8">
-        <input type="password" class="form-control" id="registerPassword">
-    </div>
-</div>
-
-<div class="form-group row">
-    <label for="registerConfirmPassword" class="col-md-4 col-form-label">Comfirm Password: </label>
-    <div class="col-md-8">
-        <input type="password" class="form-control" id="registerConfirmPassword">
-    </div>
-</div>
-
-<div class="form-group form-check row">
-    <label class="form-check-label col-md-8  offset-md-4" for="registerCheckbox">
-        <input type="checkbox" class="form-check-input" id="registerCheckbox">Remember me
-    </label>
-</div>
-<div class="form-group row">
-    <div class="offset-md-4 col-md-8">
-        <button type="submit" class="btn btn-primary " id="registerBtn" onclick="handleCreateUserButton()">Register</button>
-    </div>
-</div>
-<div class="form-group row">
-    <div class="offset-md-4 col-md-8">
-        <span>Already have a account with us? @Html.ActionLink("Sign In", "Login", "User")</span>
-    </div>
-</div>
-
+        <div class="form-group form-check row">
+            <label class="form-check-label col-md-8  offset-md-4" for="registerCheckbox">
+                <input type="checkbox" class="form-check-input" id="registerCheckbox">Remember me
+            </label>
+        </div>
+        <div class="form-group row">
+            <div class="offset-md-4 col-md-8">
+                <button type="submit" class="btn btn-primary " id="registerBtn" ">Register</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-md-4 col-md-8">
+                <span>Already have a account with us? @Html.ActionLink("Sign In", "Login", "User")</span>
+            </div>
+        </div>
+    </form>

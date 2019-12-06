@@ -11,6 +11,7 @@ namespace JooleUI.Models
 
         //Login_Name property for the object
         [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Text)]
         [Display(Name ="Username")]
         public string Login_Name { get; set; }
 

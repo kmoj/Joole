@@ -11,9 +11,9 @@
 
 
     <div class="form-group row justify-content-center">
-        <label for="signInUsername" class="col-md-3 col-form-label">Username: </label>
+        @Html.LabelFor(m=>m.Login_Name, new { @class = "col-md-3 col-form-label"})
         <div class="col-md-9">
-            <input type="text" class="form-control" id="signInUsername" />
+            @Html.TextBoxFor(m => m.Login_Name, new { @class = "form-control", id = "signInUsername"})
         </div>
     </div>
     <div class="row">
@@ -23,9 +23,9 @@
     </div>
 
     <div class="form-group row">
-        <label for="signInPassword" class="col-md-3 col-form-label">Password: </label>
+        @Html.LabelFor(m=>m.User_Password, new { @class = "col-md-3 col-form-label"})
         <div class="col-md-9">
-            <input type="text" class="form-control" id="signInPassword" />
+            @Html.TextBoxFor(m=>m.User_Password, new { @class = "form-control", id = "signInPassword"})
         </div>
     </div>
     <div class="row">

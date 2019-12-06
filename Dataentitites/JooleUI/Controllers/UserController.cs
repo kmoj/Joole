@@ -41,6 +41,8 @@ namespace JooleUI.Controllers
                     if (serv.authentication(temp.Login_Name, temp.User_Password))
                     {
                         Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
+                        ViewBag.userName = temp.Login_Name;
+                        ViewBag.userImgUrl = serv.getUserImgUrl(temp.Login_Name,temp.User_Password);
                     //return RedirectToAction("Summary", "Product");
                     return RedirectToAction("Index", "Search");
                 }
@@ -61,37 +63,35 @@ namespace JooleUI.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult Register(UserRegister user)
+        public ActionResult Register(UserRegister user)
         {
-            return PartialView();
-        }
 
-        public JsonResult CreateUserRequest(string uname, string uemail, string upass)
-        {
-            string c = Server.MapPath("Images");
-            var file = Request.Files;
-            //string path = Path.Combine(Server.MapPath("~/Images/Users"), Path.GetFileName(file.FileName));
-            Service serv = new Service();
-            serv.createUser(uname, uemail, upass);
-
-            var chak = JsonConvert.SerializeObject("OK");
-
-            return Json(chak, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult FileUploads(string qqfile)
-        {
-            foreach (string file in Request.Files)
+            if (ModelState.IsValid)
             {
-                HttpPostedFileBase uploadFile = Request.Files[file] as HttpPostedFileBase;
-                if (uploadFile != null && uploadFile.ContentLength > 0)
+                Service serv = new Service();
+                var imageUrl = "/Images/User/default.png";
+                if (user.userImgUrl !=
+                    null)
                 {
-                    var fileName = Path.GetFileName(uploadFile.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    uploadFile.SaveAs(path);
+                    var uploadDir = "~/Images/User/";
+                    DateTime uploadTime = DateTime.UtcNow;
+                    String imageName = uploadTime.ToString("yyyyMMddHHmmssffff") + user.userImgUrl.FileName;
+                    imageUrl = Path.Combine(Server.MapPath(uploadDir), imageName);
+                    user.userImgUrl.SaveAs(imageUrl);
                 }
+                serv.createUser(user.userName, user.userEmail, user.userPassword, imageUrl);
+                return RedirectToAction("Login");
             }
-            return RedirectToAction("User");
+            else
+            {
+                user.RegisterErrorMessage = "Please check your information.";
+                return PartialView(user);
+            }
+        }
+
+        public ActionResult LogOut()
+        {
+            return View("Login");
         }
     }
 }

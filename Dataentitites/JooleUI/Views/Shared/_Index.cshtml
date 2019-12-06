@@ -2,32 +2,29 @@
 
 @Styles.Render("~/CSS/UserPageStyle.css")
 
-    <div class="navbar navbar-expand-lg navbar-inverse bg-dark navbar-dark sticky-top">
-        @Html.ActionLink("Joole", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarLists" aria-controls="navbarLists" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarLists">
-            <ul class="navbar-nav mr-auto">
-                <li>
-                    @Html.ActionLink("Sign In", "Login", "User", new { @class = "nav-link" })
-                </li>
-                <li>
-                    @Html.ActionLink("Sign Up", "Register", "User", new { @class = "nav-link" })
-                </li>
-            </ul>
-        </div>
+<div class="navbar navbar-expand-lg navbar-inverse bg-dark navbar-dark sticky-top">
+    @Html.ActionLink("Joole", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarLists" aria-controls="navbarLists" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarLists">
+        <ul class="navbar-nav mr-auto">
+            @Html.ActionLink("Sign In", "Login", "User", new { @class = "nav-link" })
+            @Html.ActionLink("Sign Up", "Register", "User", new { @class = "nav-link" })
+        </ul>
     </div>
+</div>
 
-    <div id="cover">
-        <div id="cover-caption">
-            <div class="row justify-content-center text-white">
-                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10" id="formContainer">
-                    <div class="text-center" id="signinBoxTitle">
-                        <h1 class="display-4  text-truncate" >@ViewBag.Title</h1>
-                    </div>
-                    @RenderBody()
+<div id="cover">
+    <div id="cover-caption">
+        <div class="row justify-content-center text-white">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10" id="formContainer">
+                <div class="text-center" id="signinBoxTitle">
+                    <h1 class="display-4  text-truncate">@ViewBag.Title</h1>
                 </div>
+                @RenderBody()
             </div>
         </div>
     </div>
+</div>
+@RenderSection("scripts",required:false)
