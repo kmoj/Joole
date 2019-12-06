@@ -120,6 +120,12 @@ namespace Services
             List<tblUser> fliteredList = filteredList(uname, upass);
             return fliteredList.First().User_ID;
         }
+
+        public string getUserImgUrl(string uname, string upass)
+        {
+            List<tblUser> fliteredList = filteredList(uname, upass);
+            return fliteredList.First().User_Image;
+        }
         public string Value()
         {
             var a = uow.users.Find(1);

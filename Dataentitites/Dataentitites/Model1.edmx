@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -46,10 +46,10 @@
           <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Manufacturer_ID" Type="int" Nullable="false" />
           <Property Name="SubCategory_ID" Type="int" Nullable="false" />
-          <Property Name="Product_Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Product_Name" Type="varchar" MaxLength="100" />
           <Property Name="Product_Image" Type="varchar" MaxLength="200" />
-          <Property Name="Series" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Model" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Series" Type="varchar" MaxLength="100" />
+          <Property Name="Model" Type="varchar" MaxLength="100" />
           <Property Name="ProductTypeID" Type="int" Nullable="false" />
           <Property Name="Characteristics" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AirFLow" Type="int" Nullable="false" />
@@ -83,10 +83,10 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_Name" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="User_Email" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" />
+          <Property Name="User_Email" Type="varchar" MaxLength="50" />
           <Property Name="User_Image" Type="varchar" MaxLength="200" />
-          <Property Name="User_Password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_Password" Type="varchar" MaxLength="50" />
           <Property Name="Credential_ID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblManufacturer_tblUser">
@@ -195,8 +195,7 @@
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -245,10 +244,10 @@
           <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" />
           <Property Name="SubCategory_ID" Type="Int32" Nullable="false" />
-          <Property Name="Product_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Product_Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Series" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Series" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
           <Property Name="Characteristics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AirFLow" Type="Int32" Nullable="false" />
@@ -288,10 +287,10 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="User_Email" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="User_Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="User_Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Credential_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblCredential" Relationship="Self.FK_tblUser_tblCredential" FromRole="tblUser" ToRole="tblCredential" />
           <NavigationProperty Name="tblManufacturers" Relationship="Self.FK_tblManufacturer_tblUser" FromRole="tblUser" ToRole="tblManufacturer" />
