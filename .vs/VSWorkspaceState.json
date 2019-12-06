@@ -2,10 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Dataentitites",
+    "\\Dataentitites\\Dataentitites",
     "\\Dataentitites\\JooleUI",
+    "\\Dataentitites\\JooleUI\\Controllers",
+    "\\Dataentitites\\JooleUI\\CSS",
+    "\\Dataentitites\\JooleUI\\Models",
     "\\Dataentitites\\JooleUI\\Views",
-    "\\Dataentitites\\JooleUI\\Views\\User"
+    "\\Dataentitites\\JooleUI\\Views\\Shared",
+    "\\Dataentitites\\Services"
   ],
-  "SelectedNode": "\\Dataentitites\\JooleUI\\packages.config",
+  "SelectedNode": "\\Dataentitites\\Dataentitites.sln",
   "PreviewInSolutionExplorer": false
 }
