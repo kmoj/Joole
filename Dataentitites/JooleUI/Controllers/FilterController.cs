@@ -17,36 +17,39 @@ namespace JooleUI.Controllers
         IQueryable<tblProduct> products;
         public ActionResult Search(string SubCateogry)
         {
-           if (products == null)
+            if (products == null)
             {
                 products = service.GetDataSet(SubCateogry);
 
             }
             List<tblProduct> list = new List<tblProduct>();
-         
 
-            foreach (var x in products)
+            if (products != null)
             {
-                list.Add(x);
+                foreach (var x in products)
+                {
+                    list.Add(x);
+                }
             }
+
             return View(list);
         }
 
-        
+
         public ActionResult Save(FilterView filterView)
         {
 
             var dataSet = service.GetTblProductsByFilter(filterView.startYear,
-                filterView.endYear,filterView.minAirflow,filterView.maxAirflow,
-                filterView.minPower,filterView.maxPower,filterView.minSound,filterView.maxSound,filterView.minFanDiameter,
+                filterView.endYear, filterView.minAirflow, filterView.maxAirflow,
+                filterView.minPower, filterView.maxPower, filterView.minSound, filterView.maxSound, filterView.minFanDiameter,
                 filterView.maxFanDiameter);
-                List<tblProduct> list = new List<tblProduct>();
+            List<tblProduct> list = new List<tblProduct>();
             foreach (var x in dataSet)
             {
                 list.Add(x);
-                
+
             }
-            return  PartialView("SearchResult", list);
+            return PartialView("SearchResult", list);
         }
 
         public ActionResult SearchResult(int[] compare)
@@ -57,6 +60,6 @@ namespace JooleUI.Controllers
             return RedirectToAction("Black", "Home");
         }
 
-      
+
     }
 }
