@@ -137,6 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FilterView.cs" />
     <Compile Include="Models\ProductDetails.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Search.cs" />
@@ -211,6 +213,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dynamicBackground.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -238,6 +241,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.range.css" />
+    <Content Include="Scripts\jquery.range.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -346,6 +351,9 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Shared\_NavPartial1.cshtml" />
     <Content Include="Views\Shared\_NavPartial2.cshtml" />
+    <Content Include="Views\Filter\Search.cshtml" />
+    <Content Include="Views\Shared\SearchResult.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

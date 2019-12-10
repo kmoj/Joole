@@ -1,0 +1,208 @@
+﻿@model IEnumerable <Dataentitites.tblProduct>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    
+}
+
+    <div>
+
+        <div class="row m-1">
+
+            <div class="col-2 mt-3 ml-1 border">
+
+                <div class="row border p-2">
+
+                    <div class="row">
+                        <div class="col-3">
+                        <label>Search:</label>
+                            </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary " id="save" onclick="search()">Save</button>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-primary " href="@Url.Action("Search")">Clear</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row p-2 border">
+                    <div class="col-sm-6 ">
+                        <a href="#" id="product">Product</a>
+                    </div>
+
+                    <div class="col-sm-6 ">
+                        <a href="#">Project</a>
+                    </div>
+                </div>
+
+                <div class="row p-2 border">
+                    <div class="text-center">
+                        Product Type
+                    </div>
+                </div>
+
+                <div class="row p-2 border">
+                    <div>
+                        <b>Model Year:</b><br>
+                        <input type="text" name="beginningYear" id="beginYear" class="ml-2 mr-2" maxlength="4" size="4" />  -
+                        <input type="text" class="ml-2" name="endingYear" id="endYear" maxlength="4" size="4" />
+                    </div>
+
+                </div>
+
+                <div class="row p-2 border">
+                    <div class="text-center">
+                        Technical Specifications
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class=" ml-3 mt-3 mb-3 col-md-12">
+                        <label for="airflow-amount" class="pb-3">Airflow (CFM) </label><br>
+                        <div>
+                            <input class="range-slider1 " id="airflow" type="hidden" value="0,10000" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class=" ml-3 mt-3 mb-3 col-md-12">
+                        <label for="power-amount" class="pb-3">Max Power (W) </label><br />
+                        <input class="range-slider ml-1" id="powerMax" type="hidden" value="0,120" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" ml-3 mt-3 mb-3 col-md-12">
+                        <label for="sound-amount" class="pb-3">Sound at max speed (dBA)</label><br />
+                        <input class="range-slider ml-1" id="soundMax" type="hidden" value="0,120" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class=" ml-3 mt-3 mb-3 col-md-12">
+                        <label for="sweep-amount" class="pb-3">Fan sweep diameter (in) </label><br />
+                        <input class="range-slider ml-1" id="sweepDiameter" type="hidden" value="0,120" />
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-9 mt-5 ml-3 " id="SearchResult">
+
+                @{
+                    Html.RenderPartial("SearchResult");
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+
+@section scripts{
+    <script>
+    $(function () {
+        $('.range-slider1').jRange({
+            from: 0,
+            to: 10000,
+            step: 100,
+            scale: [0, 2500, 5000, 7500, 10000],
+            format: '%s',
+            theme: 'theme-blue',
+            width: '80%' ,
+            showLabels: true,
+            isRange: true
+        });
+
+        $('.range-slider').jRange({
+            from: 0,
+            to: 120,
+            step: 1,
+            scale: [0, 30, 60, 90, 120],
+            format: '%s',
+            theme: 'theme-blue',
+            width: '80%' ,
+            showLabels: true,
+            isRange: true
+        });
+
+
+
+        });
+
+
+
+    function search() {
+            var beginYear = $('#beginYear').val();
+            var endYear = $('#endYear').val();
+            var airflow = $('#airflow').val();
+            var airflows = airflow.split(',');
+            var power = $('#powerMax').val();
+            var powers = power.split(',');
+            var sound = $('#soundMax').val();
+            var sounds = sound.split(',');
+            var sweepD = $('#sweepDiameter').val();
+            var sweepDs = sweepD.split(',');
+           
+
+        
+
+
+        var data = {
+            startYear: beginYear, endYear: endYear, minAirFlow: airflows[0], maxAirFlow: airflows[1],
+            minPower: powers[0], maxPower: powers[1], minSound: sounds[0], maxSound: sounds[1], minFanDiameter: sweepDs[0],
+            maxFanDiameter: sweepDs[1]
+        }
+
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "@Url.Action("Save")",
+                data: JSON.stringify(data),
+                success: function (result) {
+                    
+                    $('#SearchResult').html(result);
+
+                },
+                error: function () {
+                    alert("fail");
+                }
+
+            });
+
+        }
+
+        function compare() {
+            var list = new Array();
+            $("input[type='radio']:checked").each(function () {
+                list.push($(this).val());
+            });
+
+      
+
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: '@Url.Action("Black","Home")',
+                data: JSON.stringify(list),
+                success: function (res) {
+                    window.location.href= "/Home/Black";
+                }
+            });
+
+        }
+        
+    </script>
+
+}
+
+
+

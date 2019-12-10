@@ -12,7 +12,7 @@
     <div id="formContent">
         <!-- Tabs Titles -->
         <!-- Icon -->
-        <div class="fadeIn first">
+        <div class="fadeIn first" id="userIconPreview">
             <img src="~/Images/User/default.png" id="icon" alt="User Icon" style="border-radius:50%;width:40%;margin-top:1rem;margin-bottom:1rem;" />
         </div>
 
@@ -48,8 +48,10 @@
             reader.readAsDataURL(file);
 
             reader.onload = function (arg) {
-
-                $("#icon").attr("src", arg.target.result);
+                console.log(arg.target.result);
+                var img = '<img src="' + arg.target.result + '" id="icon" alt="User Icon" style="border-radius:50%;width:40%;margin-top:1rem;margin-bottom:1rem;" />';
+                $("#userIconPreview").empty().append(img);
+                //$("#icon").attr("src", arg.target.result);
             }
         });
     </script>

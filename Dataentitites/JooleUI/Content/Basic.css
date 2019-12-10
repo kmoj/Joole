@@ -286,3 +286,9 @@ input[type=text], input[type=password] {
 #icon {
     width: 60%;
 }
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

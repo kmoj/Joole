@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Dataentitites.tblProduct>
+
+@{ var i = 0;
+
+}
+
+
+    <div class="container">
+
+        <div class="row ">
+            <form class="form-inline" action="@Url.Action("SearchResult","Filter")">
+                @foreach (var item in Model)
+                {
+
+                    <div id="@{i += 1;}product_@i" class="card-deck col-sm-3 ml-1" style="text-align:center">
+                        <div>
+
+                            <img src="@item.Product_Image" class="card-img-top" alt="...">
+                            <div class="m-2">
+                                <h7><b> @Html.ActionLink("" + @Html.DisplayFor(modelItem => item.Product_Name) + "", "Summa", "Home", new { id = @Html.DisplayFor(modelItem => item.Product_ID) }, new { @class = "my-class" })</b></h7>
+                                <h6><b>@item.Series</b></h6>
+                                <h6><b>@item.Model</b></h6>
+                            </div>
+                        </div>
+                        <div class="card-header col-sm-12">
+                            <div style="text-align:center" class="m-2">
+                                <span> @item.AirFLow CFW  </span> <br>
+                                <span> @item.PowerMax W at max speed </span> <br>
+                                <span> @item.MaxSpeedSound dBA at max speed </span> <br>
+                                <span> @item.SweepDiameter fan sweep diameter </span> <br>
+                            </div>
+                        </div>
+
+                        <div class="card-body row">
+
+                            @*<div class="col-6">
+                                <input type="radio" value="@item.Product_ID" />
+                                <span style="font-size:small">compare</span>
+                            </div>*@
+                            <div class="col-6">
+                                <input type="checkbox" name="compare" value="@item.Product_ID" /> <b>Compare</b>
+                                <input class="btn btn-primary" type="submit" value="Add to">
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </form>
+        </div>
+
+    </div>
+
+
+    

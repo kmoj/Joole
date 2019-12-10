@@ -50,12 +50,12 @@ namespace JooleUI.Controllers
         {
             if (string.IsNullOrEmpty(term))
             {
-                return RedirectToAction("Summary", "Product",new { searchString = term });
+                return RedirectToAction("Search", "Filter",new { searchString = term });
 
             }
             else
             {
-                return RedirectToAction("Summary", "Product", new { searchString = term });
+                return RedirectToAction("Search", "Filter", new { searchString = term });
             }
         }
 

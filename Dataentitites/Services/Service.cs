@@ -206,5 +206,11 @@ namespace Services
         {
             return uow.types.DataSet(filter);
         }
+
+        public IEnumerable<tblProduct> GetTblProductsByFilter(string startYear, string endYear, int minAirflow, int maxAirflow, int minPower, int maxPower, int minSound, int maxSound, int minFanDiameter, int maxFanDiameters)
+        {
+            return uow.searchFilter.GetListByFilter(startYear, endYear, minAirflow, maxAirflow, maxPower
+                , minPower, minSound, maxSound, minFanDiameter, maxFanDiameters);
+        }
     }
 }
