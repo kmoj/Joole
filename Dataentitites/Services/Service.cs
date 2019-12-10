@@ -135,6 +135,11 @@ namespace Services
                 return null;
         }
 
+        public tblUser GetUser(int id) 
+        {
+            return uow.users.Find(id);
+        }
+
         public string ProductValue()
         {
             string s = "";

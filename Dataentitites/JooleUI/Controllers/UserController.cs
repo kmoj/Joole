@@ -25,6 +25,13 @@ namespace JooleUI.Controllers
             return PartialView(temp);
         }
 
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "User");
+        }
+
         [HttpPost]
         public ActionResult Login(UserLogin temp)
         {
@@ -35,8 +42,8 @@ namespace JooleUI.Controllers
                 if (serv.authentication(temp.Login_Name, temp.User_Password))
                 {
                     Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
-                    ViewBag.userName = temp.Login_Name;
-                    ViewBag.userImgUrl = serv.getUserImgUrl(temp.Login_Name, temp.User_Password);
+                    Session["userName"] = temp.Login_Name;
+                    Session["userImgUrl"] = serv.getUserImgUrl(temp.Login_Name, temp.User_Password);
                     //return RedirectToAction("Summary", "Product");
                     return RedirectToAction("Index", "Search");
                 }
@@ -82,28 +89,6 @@ namespace JooleUI.Controllers
                 return PartialView(user);
             }
         }
-        //public ActionResult FileUploads(LoginPage temp)
-        //{
-        //    Service serv = new Service();
-        //    var imageUrl = "/Images/User/default.png";
 
-        //    if (temp.RegisterUserImage != null && temp.RegisterUserImage.ContentLength > 0)
-        //    {
-        //        var uploadDir = "~/Images/User/";
-        //        DateTime dateime = DateTime.UtcNow;
-        //        string imageName = dateime.ToString("yyyyMMddHHmmssffff") + temp.RegisterUserImage.FileName;
-
-        //        var imagePath = Path.Combine(Server.MapPath(uploadDir), imageName);
-        //        imageUrl = Path.Combine(uploadDir, imageName);
-        //        temp.RegisterUserImage.SaveAs(imagePath);
-        //    }
-        //    serv.createUser(temp.RegisterUsername, temp.RegisterEmail, temp.RegisterPassword, imageUrl.TrimStart('~'));
-        //    return RedirectToAction("/");
-        //}
-
-        public ActionResult LogOut()
-        {
-            return View("Login");
-        }
     }
 }

@@ -16,7 +16,8 @@ namespace JooleUI.Controllers
         public ActionResult Index(int? value)
         {
             List<Category> listObj = new List<Category>();
-            foreach (var tempCatego in new Services.Service().getCategories())
+            Service serv = new Service();
+            foreach (var tempCatego in serv.getCategories())
             {
 
                 Category tempObj = new Category();

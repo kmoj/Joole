@@ -59,7 +59,7 @@ namespace RepoBLL
 
         public tblUser Find(int v)
         {
-            throw new NotImplementedException();
+            return dbSet.Find(u => u.User_ID == v);
         }
 
         public void remove(tblUser entity)

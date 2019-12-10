@@ -13,24 +13,45 @@
         <!-- Tabs Titles -->
         <!-- Icon -->
         <div class="fadeIn first">
-            <img src="~/Content/images/logo.png" id="icon" alt="User Icon" />
+            <img src="~/Images/User/default.png" id="icon" alt="User Icon" style="border-radius:50%;width:40%;margin-top:1rem;margin-bottom:1rem;" />
         </div>
 
         <!-- Login Form -->
         <form action="@Url.Action("Register","User")" method="post" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-            @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "fadeIn form-control", id = "registerUsername" })
+            @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "fadeIn form-control", id = "registerUserImage", accept="image/*" })
             @Html.TextBoxFor(model => model.userName, new { @class = "fadeIn second", id = "registerUsername", placeholder = "Username" })
             @Html.TextBoxFor(model => model.userEmail, new { @class = "fadeIn third", id = "registerEmail", placeholder = "Email" })
             @Html.PasswordFor(model => model.userPassword, new { @class = "fadeIn fourth", id = "registerPassword", placeholder = "Password" })
             @Html.PasswordFor(model => model.confirmPassword, new { @class = "fadeIn fourth", id = "comfirmPassword", placeholder = "Confirm Password" })
-            
+
             <input type="submit" class="LandingPageBtn fadeIn fourth" value="Register">
             <!-- Remind Passowrd -->
             <div id="formFooter">
                 Already have a account with us? @Html.ActionLink("Sign In", "Login", "User", new { @class = "underlineHover" })
             </div>
         </form>
+    </div>
 </div>
-</div>
+
+@section scripts{
+    <script>
+        $("#registerUserImage").on("change", function (e) {
+            var file = e.target.files[0];
+            if (!file.type.match('image.*')) {
+                return false;
+            }
+
+            var reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = function (arg) {
+
+                $("#icon").attr("src", arg.target.result);
+            }
+        });
+    </script>
+}
+
