@@ -1,109 +1,112 @@
-﻿@model IEnumerable <Dataentitites.tblProduct>
+﻿@model IEnumerable<Dataentitites.tblProduct>
 
 @{
     ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout1.cshtml";
-    
+
 }
 
-    <div>
+<div>
 
-        <div class="row m-1">
+    <div class="row col-12 ml-1 p-1">
 
-            <div class="col-2 mt-3 ml-1 border">
+        <div class="col-sm-2 mt-3 ml-1 border">
 
-                <div class="row border p-2">
+            <div class="row border p-3">
 
-                    <div class="row">
-                        <div class="col-3">
+                <div class="row">
+                    <div class="col-3">
                         <label>Search:</label>
-                            </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary " id="save" onclick="search()">Save</button>
-                        </div>
-                        <div class="col-4">
-                            <a class="btn btn-primary " href="@Url.Action("Search")">Clear</a>
-                        </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary " id="save" onclick="search()">Save</button>
+                    </div>
+                    <div class="col-4">
+                        <a class="btn btn-primary " href="@Url.Action("Search")">Clear</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="row p-2 border">
-                    <div class="col-sm-6 ">
-                        <a href="#" id="product">Product</a>
-                    </div>
-
-                    <div class="col-sm-6 ">
-                        <a href="#">Project</a>
-                    </div>
+            <div class="row p-3 border">
+                <div class="col-sm-6 ">
+                    <a href="#" id="product">Product</a>
                 </div>
 
-                <div class="row p-2 border">
-                    <div class="text-center">
-                        Product Type
-                    </div>
+                <div class="col-sm-6 ">
+                    <a href="#">Project</a>
+                </div>
+            </div>
+
+            <div class="row p-3 border">
+                <div class="text-center">
+                    Product Type
+                </div>
+            </div>
+
+            <div class="row p-3 border">
+                <div class="input-group-prepend">
+                    <span>Model Year</span>
                 </div>
 
-                <div class="row p-2 border">
+                <div class="input-group">
+
+                    <input type="text" name="beginningYear" id="beginYear" maxlength="4" class="form-control p-3"> -
+                    <input type="text" name="endingYear" id="endYear" maxlength="4" class="form-control p-3 ml-2">
+                </div>
+            </div>
+
+            <div class="row p-3 border">
+                <div class="text-center">
+                    Technical Specifications
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class=" ml-3 mt-3 mb-3 col-md-12">
+                    <label for="airflow-amount" class="pb-3">Airflow (CFM) </label><br>
                     <div>
-                        <b>Model Year:</b><br>
-                        <input type="text" name="beginningYear" id="beginYear" class="ml-2 mr-2" maxlength="4" size="4" />  -
-                        <input type="text" class="ml-2" name="endingYear" id="endYear" maxlength="4" size="4" />
+                        <input class="range-slider1 " id="airflow" type="hidden" value="0,10000" />
                     </div>
 
-                </div>
-
-                <div class="row p-2 border">
-                    <div class="text-center">
-                        Technical Specifications
-                    </div>
-                </div>
-
-
-
-                <div class="row">
-                    <div class=" ml-3 mt-3 mb-3 col-md-12">
-                        <label for="airflow-amount" class="pb-3">Airflow (CFM) </label><br>
-                        <div>
-                            <input class="range-slider1 " id="airflow" type="hidden" value="0,10000" />
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class=" ml-3 mt-3 mb-3 col-md-12">
-                        <label for="power-amount" class="pb-3">Max Power (W) </label><br />
-                        <input class="range-slider ml-1" id="powerMax" type="hidden" value="0,120" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class=" ml-3 mt-3 mb-3 col-md-12">
-                        <label for="sound-amount" class="pb-3">Sound at max speed (dBA)</label><br />
-                        <input class="range-slider ml-1" id="soundMax" type="hidden" value="0,120" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class=" ml-3 mt-3 mb-3 col-md-12">
-                        <label for="sweep-amount" class="pb-3">Fan sweep diameter (in) </label><br />
-                        <input class="range-slider ml-1" id="sweepDiameter" type="hidden" value="0,120" />
-                    </div>
                 </div>
 
             </div>
 
-
-            <div class="col-sm-9 mt-5 ml-3 " id="SearchResult">
-
-                @{
-                    Html.RenderPartial("SearchResult");
-                }
-
+            <div class="row">
+                <div class=" ml-3 mt-3 mb-3 col-md-12">
+                    <label for="power-amount" class="pb-3">Max Power (W) </label><br />
+                    <input class="range-slider ml-1" id="powerMax" type="hidden" value="0,120" />
+                </div>
             </div>
+
+            <div class="row">
+                <div class=" ml-3 mt-3 mb-3 col-md-12">
+                    <label for="sound-amount" class="pb-3">Sound at max speed (dBA)</label><br />
+                    <input class="range-slider ml-1" id="soundMax" type="hidden" value="0,120" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" ml-3 mt-3 mb-3 col-md-12">
+                    <label for="sweep-amount" class="pb-3">Fan sweep diameter (in) </label><br />
+                    <input class="range-slider ml-1" id="sweepDiameter" type="hidden" value="0,120" />
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-9 mt-5 ml-4 " id="SearchResult">
+
+            @{
+                Html.RenderPartial("SearchResult");
+            }
+
         </div>
     </div>
+</div>
 
 
 
@@ -151,9 +154,9 @@
             var sounds = sound.split(',');
             var sweepD = $('#sweepDiameter').val();
             var sweepDs = sweepD.split(',');
-           
 
-        
+
+
 
 
         var data = {
@@ -168,7 +171,7 @@
                 url: "@Url.Action("Save")",
                 data: JSON.stringify(data),
                 success: function (result) {
-                    
+
                     $('#SearchResult').html(result);
 
                 },
@@ -179,30 +182,7 @@
             });
 
         }
-
-        function compare() {
-            var list = new Array();
-            $("input[type='radio']:checked").each(function () {
-                list.push($(this).val());
-            });
-
-      
-
-            $.ajax({
-                type: "post",
-                contentType: "application/json",
-                url: '@Url.Action("Black","Home")',
-                data: JSON.stringify(list),
-                success: function (res) {
-                    window.location.href= "/Home/Black";
-                }
-            });
-
-        }
-        
+        s
     </script>
 
-}
-
-
-
+}s
