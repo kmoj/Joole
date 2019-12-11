@@ -3,16 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="~/Content/Basic.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.range.js"></script>
+    <link href="~/Scripts/jquery.range.css" rel="stylesheet" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="~/Scripts/dynamicBackground.js"></script>
+    <title>@ViewBag.Title - Joole Application</title>
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
 
-    @RenderBody()
-    <footer>
-        <p>&copy; @DateTime.Now.Year - JOOLE</p>
-    </footer>
+    @*Header*@
+    @{ if (Session["userID"] == null)
+        {
+            Html.RenderPartial("_NavPartial1", null);
+        }
+        else
+        {
+            Html.RenderAction("SetUserInfo", "Nav");
+        }
+    }
+
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+
+
+
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark" id="footer">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <span class="text-muted">@DateTime.Now.Year - Joole Application</span>
+        </div>
+    </nav>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

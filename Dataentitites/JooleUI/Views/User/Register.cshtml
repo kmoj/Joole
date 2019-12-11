@@ -1,65 +1,61 @@
 @model JooleUI.Models.UserRegister
 
 @{
-    Layout = "../Shared/_Index.cshtml";
+    Layout = "../Shared/_Layout.cshtml";
 }
 
 @{
     ViewBag.Title = "Register with Us";
 }
 
-
-    <form action="@Url.Action("Register","User")" method="post" enctype="multipart/form-data">
-
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-
-        <div class="form-group row">
-            @Html.LabelFor(model => model.userImgUrl, new { @class = "col-md-4 col-form-label" })
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "form-control", id = "registerUsername" })
-            </div>
+<canvas id="canvas"></canvas>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first" id="userIconPreview">
+            <img src="~/Images/User/default.png" id="icon" alt="User Icon" style="border-radius:50%;width:40%;margin-top:1rem;margin-bottom:1rem;" />
         </div>
 
-        <div class="form-group row">
-            <label for="registerUsername" class="col-md-4 col-form-label">Username: </label>
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.userName, new { @class = "form-control", id = "registerUsername" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="registerEmail" class="col-md-4 col-form-label">Email: </label>
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.userEmail, new { @class = "form-control", id = "registerEmail" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="registerPassword" class="col-md-4 col-form-label">Password: </label>
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.userPassword, new { @class = "form-control", id = "registerPassword" })
-            </div>
-        </div>
+        <!-- Login Form -->
+        <form action="@Url.Action("Register","User")" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "fadeIn second", id = "registerUserImage", accept = "image/*" })
+            @Html.TextBoxFor(model => model.userName, new { @class = "fadeIn second", id = "registerUsername", placeholder = "Username" })
+            @Html.TextBoxFor(model => model.userEmail, new { @class = "fadeIn third", id = "registerEmail", placeholder = "Email" })
+            @Html.PasswordFor(model => model.userPassword, new { @class = "fadeIn fourth", id = "registerPassword", placeholder = "Password" })
+            @Html.PasswordFor(model => model.confirmPassword, new { @class = "fadeIn fourth", id = "comfirmPassword", placeholder = "Confirm Password" })
 
-        <div class="form-group row">
-            <label for="registerConfirmPassword" class="col-md-4 col-form-label">Comfirm Password: </label>
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.confirmPassword, new { @class = "form-control", id = "comfirmPassword" })
+            <input type="submit" class="LandingPageBtn fadeIn fourth" value="Register">
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                Already have a account with us? @Html.ActionLink("Sign In", "Login", "User", new { @class = "underlineHover" })
             </div>
-        </div>
+        </form>
+    </div>
+</div>
 
-        <div class="form-group form-check row">
-            <label class="form-check-label col-md-8  offset-md-4" for="registerCheckbox">
-                <input type="checkbox" class="form-check-input" id="registerCheckbox">Remember me
-            </label>
-        </div>
-        <div class="form-group row">
-            <div class="offset-md-4 col-md-8">
-                <button type="submit" class="btn btn-primary " id="registerBtn" ">Register</button>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="offset-md-4 col-md-8">
-                <span>Already have a account with us? @Html.ActionLink("Sign In", "Login", "User")</span>
-            </div>
-        </div>
-    </form>
+@section scripts{
+    <script src="~/Scripts/src/canvas.js"></script>
+    <script>
+        $("#registerUserImage").on("change", function (e) {
+            var file = e.target.files[0];
+            if (!file.type.match('image.*')) {
+                return false;
+            }
+
+            var reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = function (arg) {
+                console.log(arg.target.result);
+                var img = '<img src="' + arg.target.result + '" id="icon" alt="User Icon" style="border-radius:50%;width:40%;margin-top:1rem;margin-bottom:1rem;" />';
+                $("#userIconPreview").empty().append(img);
+                //$("#icon").attr("src", arg.target.result);
+            }
+        });
+    </script>
+}
+

@@ -9,9 +9,9 @@ using System.Data.Entity;
 
 namespace RepoBLL
 {
-    public interface IProduct:IRepo<tblProduct>
+    public interface IProduct : IRepo<tblProduct>
     {
-
+        IEnumerable<tblProduct> SearchProductByNameCateId(string name, int cateId);
     }
 
     public class ProductRepo : IProduct
@@ -48,6 +48,23 @@ namespace RepoBLL
             //             where product.Product_Name == searchString
             //             select product;
             return s;
+        }
+
+        public IEnumerable<tblProduct> SearchProductByNameCateId(string name, int cateId)
+        {
+            IEnumerable<tblProduct> res = new List<tblProduct>();
+            //IDbSet<tblSubCategory> subCateDbSet = context.Set<tblSubCategory>();
+
+            //var subCateList = (from subCate in subCateDbSet
+            //                   where subCate.Category_ID == cateId
+            //                   select subCate);
+
+            var productList = (from p in dbSet select p);
+            if (!String.IsNullOrEmpty(name))
+            {
+                productList = productList.Where(product => product.tblSubCategory.Category_ID == cateId && product.Product_Name.Contains(name));
+            }
+            return productList.ToList();
         }
 
         public IQueryable<tblProduct> DataSet(string filter)

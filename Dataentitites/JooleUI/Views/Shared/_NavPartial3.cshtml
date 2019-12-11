@@ -1,0 +1,24 @@
+﻿@model IEnumerable <JooleUI.Models.Category>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h3 class="my-0 md-auto font-weight-normal col-2" style="font-size:3rem;font-family: 'Lobster', cursive;">Joole</h3>
+    <form class="form-inline mt-md-0 col-6" action="@Url.Action("NavBarSearchAction","Nav")" method="post">
+        <select class="mr-1" name="category">
+            <option selected>Category</option>
+            @foreach (var item in Model)
+            {
+                <option value=@item.Category_ID>@item.Category_Name</option>
+            }
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="productName">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <div class="col-4 text-right">
+        <a class="navbar-brand" style="font-family: 'Lobster', cursive;">Welcome! @ViewBag.userName</a>
+        <img src="@ViewBag.userImgUrl" id="icon" alt="User Icon" style="border-radius:50%;width:4rem;margin-right:1rem;" />
+        @Html.ActionLink("Sign Out", "LogOut", "User", null, new { @class = "btn btn-outline-primary" })
+    </div>
+</div>

@@ -1,15 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Dataentitites",
-    "\\Dataentitites\\Dataentitites",
-    "\\Dataentitites\\JooleUI",
-    "\\Dataentitites\\JooleUI\\Controllers",
-    "\\Dataentitites\\JooleUI\\CSS",
-    "\\Dataentitites\\JooleUI\\Models",
-    "\\Dataentitites\\JooleUI\\Views",
-    "\\Dataentitites\\JooleUI\\Views\\Shared",
-    "\\Dataentitites\\Services"
+    "\\Dataentitites"
   ],
   "SelectedNode": "\\Dataentitites\\Dataentitites.sln",
   "PreviewInSolutionExplorer": false

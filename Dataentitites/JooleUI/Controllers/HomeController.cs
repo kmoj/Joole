@@ -6,15 +6,17 @@ using Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
+using Dataentitites;
 
 namespace JooleUI.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Summa(int? id)
+        public ActionResult Summa(int id)
         {
+            Service serv = new Service();
             List<Category> listObj = new List<Category>();
-            foreach (var tempCatego in new Services.Service().getCategories())
+            foreach (var tempCatego in serv.getCategories())
             {
                 Category tempObj = new Category();
                 tempObj.Category_ID = tempCatego.Category_ID;
@@ -22,8 +24,33 @@ namespace JooleUI.Controllers
                 listObj.Add(tempObj);
             }
             ViewBag.Category = new SelectList(listObj, "Category_ID", "Category_Name");
+            tblProduct tblproduct = serv.value(id);
+            Products prod = new Products();
+            prod.Product_Name = tblproduct.Product_Name;
+            prod.Product_Image = tblproduct.Product_Image;
+            prod.Series = tblproduct.Series;
+            prod.Charecteristics = tblproduct.Characteristics;
+            prod.Model = tblproduct.Model;
+            prod.AirFLow = tblproduct.AirFLow;
+            prod.PowerMax = tblproduct.PowerMax;
+            prod.PowerMin = tblproduct.PowerMin;
+            prod.OVMax = tblproduct.PowerMax * 100 - 70;
+            prod.OVMin = tblproduct.PowerMax * 100 - 20;
+            prod.FanSpeedMax = tblproduct.PowerMax * 100 / 6;
+            prod.FanSpeedMin = tblproduct.PowerMax * 100 - 40;
+            prod.MaxSpeedSound = tblproduct.MaxSpeedSound;
+            prod.SweepDiameter = tblproduct.SweepDiameter;
+            prod.Manufacturer_Name = tblproduct.tblManufacturer.Manufacturer_Name;
+            prod.Manufacturer_Department = tblproduct.tblManufacturer.Manufacturer_Department;
+            prod.Manufacturer_Web = tblproduct.tblManufacturer.Manufacturer_Web;
+            prod.UseType = tblproduct.tblType.UseType;
+            prod.Application = tblproduct.tblType.Application;
+            prod.MountingLocation = tblproduct.tblType.MountingLocation;
+            prod.Accessories = tblproduct.tblType.Accessories;
+            prod.ModelYear = tblproduct.tblType.ModelYear;
+
             TempData["ids"] = id;
-            return View();
+            return View(prod);
         }
 
         [HttpPost]
@@ -104,8 +131,9 @@ namespace JooleUI.Controllers
         
         public ActionResult Black()
         {
+            Service serv = new Service();
             List<Category> listObj = new List<Category>();
-            foreach (var tempCatego in new Services.Service().getCategories())
+            foreach (var tempCatego in serv.getCategories())
             {
                 Category tempObj = new Category();
                 tempObj.Category_ID = tempCatego.Category_ID;
@@ -113,7 +141,39 @@ namespace JooleUI.Controllers
                 listObj.Add(tempObj);
             }
             ViewBag.Category = new SelectList(listObj, "Category_ID", "Category_Name");
-            return View();
+
+            int[] comp = (int[])TempData["camp"];
+            List<Products> comparedProducts = new List<Products>();
+            for (int i = 0; i < comp.Length; i++)
+            {
+                tblProduct tblproduct = serv.value(comp[i]);
+                Products prod = new Products();
+                prod.Product_Name = tblproduct.Product_Name;
+                prod.Product_Image = tblproduct.Product_Image;
+                prod.Series = tblproduct.Series;
+                prod.Charecteristics = tblproduct.Characteristics;
+                prod.Model = tblproduct.Model;
+                prod.AirFLow = tblproduct.AirFLow;
+                prod.PowerMax = tblproduct.PowerMax;
+                prod.PowerMin = tblproduct.PowerMin;
+                prod.OVMax = tblproduct.PowerMax * 100 - 70;
+                prod.OVMin = tblproduct.PowerMax * 100 - 20;
+                prod.FanSpeedMax = tblproduct.PowerMax * 100 / 6;
+                prod.FanSpeedMin = tblproduct.PowerMax * 100 - 40;
+                prod.MaxSpeedSound = tblproduct.MaxSpeedSound;
+                prod.SweepDiameter = tblproduct.SweepDiameter;
+                prod.Manufacturer_Name = tblproduct.tblManufacturer.Manufacturer_Name;
+                prod.Manufacturer_Department = tblproduct.tblManufacturer.Manufacturer_Department;
+                prod.Manufacturer_Web = tblproduct.tblManufacturer.Manufacturer_Web;
+                prod.UseType = tblproduct.tblType.UseType;
+                prod.Application = tblproduct.tblType.Application;
+                prod.MountingLocation = tblproduct.tblType.MountingLocation;
+                prod.Accessories = tblproduct.tblType.Accessories;
+                prod.ModelYear = tblproduct.tblType.ModelYear;
+                comparedProducts.Add(prod);
+            }
+
+                return View("Black", comparedProducts);
         }
 
         [HttpPost]

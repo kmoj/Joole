@@ -12,14 +12,12 @@ namespace JooleUI.Controllers
 {
     public class UserController : Controller
     {
-        
+
         public ActionResult Index()
         {
             return View("Login");
         }
-        /* 
-         * This method will be called by the page when the user load the page at first. 
-         */
+
         [HttpGet]
         public PartialViewResult Login()
         {
@@ -27,10 +25,13 @@ namespace JooleUI.Controllers
             return PartialView(temp);
         }
 
-        /*
-         *
-         * This method will retrive the login information from user and check if the login is accurate
-         */
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "User");
+        }
+
         [HttpPost]
         public ActionResult Login(UserLogin temp)
         {
@@ -38,19 +39,19 @@ namespace JooleUI.Controllers
 
             if (ModelState.IsValid)
             {
-                    if (serv.authentication(temp.Login_Name, temp.User_Password))
-                    {
-                        Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
-                        ViewBag.userName = temp.Login_Name;
-                        ViewBag.userImgUrl = serv.getUserImgUrl(temp.Login_Name,temp.User_Password);
+                if (serv.authentication(temp.Login_Name, temp.User_Password))
+                {
+                    Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
+                    Session["userName"] = temp.Login_Name;
+                    Session["userImgUrl"] = serv.getUserImgUrl(temp.Login_Name, temp.User_Password);
                     //return RedirectToAction("Summary", "Product");
                     return RedirectToAction("Index", "Search");
                 }
-                    else
-                    {
-                        temp.LoginErrorMessage = "Incrrect username or password.";
-                        return View("Login", temp);
-                    }
+                else
+                {
+                    temp.LoginErrorMessage = "Incrrect username or password.";
+                    return View("Login", temp);
+                }
             }
             return PartialView();
         }
@@ -70,16 +71,16 @@ namespace JooleUI.Controllers
             {
                 Service serv = new Service();
                 var imageUrl = "/Images/User/default.png";
-                if (user.userImgUrl !=
-                    null)
-                {
+                if (user.userImgUrl != null && user.userImgUrl.ContentLength > 0)
+                    {
                     var uploadDir = "~/Images/User/";
                     DateTime uploadTime = DateTime.UtcNow;
                     String imageName = uploadTime.ToString("yyyyMMddHHmmssffff") + user.userImgUrl.FileName;
-                    imageUrl = Path.Combine(Server.MapPath(uploadDir), imageName);
-                    user.userImgUrl.SaveAs(imageUrl);
+                    var imagePath = Path.Combine(Server.MapPath(uploadDir), imageName);
+                    imageUrl = Path.Combine(uploadDir, imageName);
+                    user.userImgUrl.SaveAs(imagePath);
                 }
-                serv.createUser(user.userName, user.userEmail, user.userPassword, imageUrl);
+                serv.createUser(user.userName, user.userEmail, user.userPassword, imageUrl.TrimStart('~'));
                 return RedirectToAction("Login");
             }
             else
@@ -89,9 +90,5 @@ namespace JooleUI.Controllers
             }
         }
 
-        public ActionResult LogOut()
-        {
-            return View("Login");
-        }
     }
 }

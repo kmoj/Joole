@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/Basic.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery.range.js"></script>
+    <link rel="stylesheet" href="~/Scripts/jquery.range.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    @RenderSection("scripts", required: false)
+
+</head>
+<body>
+
+    @*Header*@
+    @{ if (Session["userID"] == null)
+        {
+            Html.RenderPartial("_NavPartial1", null);
+        }
+        else
+        {
+            Html.RenderAction("SetUserInfoSearchBar", "Nav");
+        }
+    }
+    @RenderBody()
+</body>
+</html>

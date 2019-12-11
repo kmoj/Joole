@@ -1,10 +1,10 @@
-﻿@model IEnumerable<JooleUI.Models.Products>
-
+﻿@model JooleUI.Models.Products
 @{
     ViewBag.Title = "Summa";
-    Layout = "../Shared/_AfterAuthenticated.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
+
 
     th {
         background-color: ghostwhite
@@ -12,47 +12,168 @@
 </style>
 
 <div class="container-fluid" style="padding:0px">
-    <div style="margin-top:1%;background:linear-gradient(blue,white)" class="row">
-        <img  src="~/Images/Joole.png" style="float:left;width:200px" />
-        <div class="container"style="margin-top:20px;">
-            @using (@Html.BeginForm())
-            {
-                @Html.DropDownList("Category", null, "", new { @class = "btn btn-secondary dropdown-toggle" })
-                <input id="searchBox" style="width:250px" name="term" />
-                <input type="submit" value="Search" class="btn btn-primary" />
-            }
-        </div>
-    </div>
-    <div class="col-md-12" style="display:inline;background-color:lightgrey;padding-bottom:20px">
-        <div style="margin-left:60px;margin-top:20px;float:left;">
-            <label>Product Summary</label>
-            <label style="margin-left:30px">Product Details</label>
-            <label style="margin-left:30px">Product Documentation</label>
-            <label style="margin-left:30px">Contact</label>
-        </div>
-    </div>
     <div class="col-md-12" style="display:inline-block;background-color:white;">
-        <h3>Product Summary</h3>
-        <div style="float:left;text-align:left;width:50%;">
-            <table class="table" border="1">
-                <tbody id="tbody1"></tbody>
-            </table>
-            <table class="table" border="1">
-                <tbody id="tbody2"></tbody>
-            </table>
+        <div class="row">
+            <h3>Product Summary</h3>
         </div>
-        <div style="float:right;text-align:left;width:50%;">
-            <table class="table" border="1">
-                <tbody id="tbody3"></tbody>
-            </table>
+        <div class="row">
+            <div class="col-5">
+                <div class="row text-center">
+                    <img src="@Model.Product_Image" class="rounded img-fluid">
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">MANUFACTURER</th>
+                                <th scope="col"> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Manufacturer Name</th>
+                                <td>@Model.Manufacturer_Name</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Manufacturer Dept</th>
+                                <td>@Model.Manufacturer_Department</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Manufacturer Web</th>
+                                <td>@Model.Manufacturer_Web</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">TYPE</th>
+                                <th scope="col"> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Use Type</th>
+                                <td>@Model.UseType</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Application</th>
+                                <td>@Model.Application</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mounting Location</th>
+                                <td>@Model.MountingLocation</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Accessories</th>
+                                <td>@Model.Accessories</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Model Year</th>
+                                <td>@Model.ModelYear</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-6 ml-1">
+
+                <div class="row">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Product Info</th>
+                                <th scope="col"> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Product Name</th>
+                                <td>@Model.Product_Name</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Serise</th>
+                                <td>@Model.Series</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Model</th>
+                                <td>@Model.Model</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Characteristic</th>
+                                <td>@Model.Charecteristics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">TECH SPECIFICATIONS</th>
+                                <th scope="col"> </th>
+                                <th scope="col"> </th>
+                                <th scope="col"> </th>
+                                <th scope="col"> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Air Flow</th>
+                                <td>@Model.AirFLow</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Power(W)</th>
+                                <th scope="row">Min</th>
+                                <td>@Model.PowerMin</td>
+                                <th scope="row">Max</th>
+                                <td>@Model.PowerMax</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Operating Volt(VAC)</th>
+                                <th scope="row">Min</th>
+                                <td>@Model.OVMin</td>
+                                <th scope="row">Max</th>
+                                <td>@Model.OVMax</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Fan Speed(RPM)</th>
+                                <th scope="row">Min</th>
+                                <td>@Model.FanSpeedMin</td>
+                                <th scope="row">Max</th>
+                                <td>@Model.FanSpeedMax</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sound At Max Speed(dBA)</th>
+                                <td>@Model.MaxSpeedSound</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Fan Sweep Diameter(in)</th>
+                                <td>@Model.SweepDiameter</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
-    @section scripts{
-        <script>
-            
-            //console.log(idPAss);
-            $(function () {
+@section scripts{
+    <script>
+
+                //console.log(idPAss);
                 $("#searchBox").autocomplete({
                     source: function (request, response) {
                         var dat = JSON.stringify({
@@ -86,60 +207,60 @@
                     minLength: 1
                 });
 
-                $(document).ready(function () {
-                    console.log("Hellowthere");
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/Summ",
-                        data: "",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-                            var i = 0;
-                            var dats = JSON.parse(response);
-                            i = i + 1;
-                            $.each(dats, function (key, val) {
-                                console.log(val.Product_Name);
-                                $("#tbody1").append("<tr id='thz' ><th colspan='2'>Description</th></tr><tr><th>Product_Name</th><td>" + val.Product_Name + "</td></tr><tr><th>Series</th><td> " + val.Series + "</td></tr><tr><th>Manufacturer Name</th><td> " + val.Manufacturer_Name + "</td></tr>");
-                                $("#tbody3").append("<tr id='thy' ><th colspan='3'>Technical Specification</th></tr>");
-                                var obs = JSON.parse(val.Object);
-                                var k = 0;
-                                $.each(obs, function (keys, vale) {
-                                    k = k + 1;
-                                    if ($("#" + keys).length == 0)
-                                        $("#tbody3").append("<tr id='" + k + "'><th>" + keys + "</th></tr>");
-                                    var j = 0;
-                                    if (obs[keys].length > 1) {
-                                        while (j < obs[keys].length) {
-                                            $('#' + k).append("<td id = 'tdf'>" + obs[keys][j] + "</td>");
-                                            j++;
-                                            console.log(obs[keys]);
-                                        }
-                                    } else {
-                                        $('#' + k).append("<td colspan='2' id = 'tdf'>" + obs[keys] + "</td>");
+            $(document).ready(function () {
+                console.log("Hellowthere");
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Summ",
+                    data: "",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var i = 0;
+                        var dats = JSON.parse(response);
+                        i = i + 1;
+                        $.each(dats, function (key, val) {
+                            console.log(val.Product_Name);
+                            $("#tbody1").append("<tr id='thz' ><th colspan='2'>Description</th></tr><tr><th>Product_Name</th><td>" + val.Product_Name + "</td></tr><tr><th>Series</th><td> " + val.Series + "</td></tr><tr><th>Manufacturer Name</th><td> " + val.Manufacturer_Name + "</td></tr>");
+                            $("#tbody3").append("<tr id='thy' ><th colspan='3'>Technical Specification</th></tr>");
+                            var obs = JSON.parse(val.Object);
+                            var k = 0;
+                            $.each(obs, function (keys, vale) {
+                                k = k + 1;
+                                if ($("#" + keys).length == 0)
+                                    $("#tbody3").append("<tr id='" + k + "'><th>" + keys + "</th></tr>");
+                                var j = 0;
+                                if (obs[keys].length > 1) {
+                                    while (j < obs[keys].length) {
+                                        $('#' + k).append("<td id = 'tdf'>" + obs[keys][j] + "</td>");
+                                        j++;
+                                        console.log(obs[keys]);
                                     }
-                                    console.log(obs[keys]);
+                                } else {
+                                    $('#' + k).append("<td colspan='2' id = 'tdf'>" + obs[keys] + "</td>");
+                                }
+                                console.log(obs[keys]);
 
-                                });
-                                $("#tbody2").append("<tr id='thz' ><th colspan='2'>Type</th></tr><tr><th>Model</th><td> " + val.Model + "</td></tr><tr id='th" + i + "'><th>Model Year</th><td> " + val.ModelYear + "</td></tr><tr id='th" + i + "'><th>Applications</th>  <td> " + val.Application + "</td> </tr><tr id='th" + i + "'><th>Mounting Location</th> <td> " + val.MountingLocation + "</td></tr><tr id='th" + i + "'><th>Use Type</th><td> " + val.UseType + "</td></tr>");
                             });
-                            console.log(response + "Hello");
-                        },
-                        failure: function (response) {
-                            console.log(response + "Hello1");
-                        },
-                        error: function (response) {
-                            console.log(response + "Hello2");
-                            var dats = JSON.parse(response);
-                            $.each(dats, function (key, val) {
-                                $("tbody").append("<tr><td id = 'tdf" + i + "'>" + val.Product_ID + "</td>" +
-                                    "<td id = 'tdl" + i + "'>" + val.Manufacturer_Name + "</td>" +
-                                    "<td id = 'tde" + i + "'>" + val.Series + "</td>" +
-                                    "<td id = 'tdlo" + i + "'>" + val.Model + "</td></tr>");
-                            });
-                        }
-                    });
+                            $("#tbody2").append("<tr id='thz' ><th colspan='2'>Type</th></tr><tr><th>Model</th><td> " + val.Model + "</td></tr><tr id='th" + i + "'><th>Model Year</th><td> " + val.ModelYear + "</td></tr><tr id='th" + i + "'><th>Applications</th>  <td> " + val.Application + "</td> </tr><tr id='th" + i + "'><th>Mounting Location</th> <td> " + val.MountingLocation + "</td></tr><tr id='th" + i + "'><th>Use Type</th><td> " + val.UseType + "</td></tr>");
+                        });
+                        console.log(response + "Hello");
+                    },
+                    failure: function (response) {
+                        console.log(response + "Hello1");
+                    },
+                    error: function (response) {
+                        console.log(response + "Hello2");
+                        var dats = JSON.parse(response);
+                        $.each(dats, function (key, val) {
+                            $("tbody").append("<tr><td id = 'tdf" + i + "'>" + val.Product_ID + "</td>" +
+                                "<td id = 'tdl" + i + "'>" + val.Manufacturer_Name + "</td>" +
+                                "<td id = 'tde" + i + "'>" + val.Series + "</td>" +
+                                "<td id = 'tdlo" + i + "'>" + val.Model + "</td></tr>");
+                        });
+                    }
                 });
-            }
-        </script>
-    }
+            });
+
+    </script>
+}

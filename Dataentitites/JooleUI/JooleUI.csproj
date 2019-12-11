@@ -137,21 +137,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FilterView.cs" />
+    <Compile Include="Models\ProductDetails.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Search.cs" />
-    <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\LoginPage.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Models\ProductVM.cs" />
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Basic.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -199,11 +205,10 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="CSS\UserPageStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\userBackgroudImage.jpg" />
+    <Content Include="Images\User\default.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -235,6 +240,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.range.css" />
+    <Content Include="Scripts\jquery.range.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -244,6 +251,7 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\canvas.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -323,7 +331,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Black.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Home\Summa.cshtml" />
     <Content Include="Views\Product\Summary.cshtml" />
@@ -338,12 +345,19 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_Index.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Shared\_AfterAuthenticated.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Shared\_NavPartial1.cshtml" />
+    <Content Include="Views\Shared\_NavPartial2.cshtml" />
+    <Content Include="Views\Filter\Search.cshtml" />
+    <Content Include="Views\Shared\SearchResult.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Shared\_NavPartial3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\User\" />
+    <Folder Include="Views\Nav\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,54 +1,42 @@
 ﻿@model JooleUI.Models.UserLogin
-@{Layout = "../Shared/_index.cshtml";}
+@{Layout = "../Shared/_Layout.cshtml";}
 
 @{
     ViewBag.Title = "Joole";
 }
 
-@using (Html.BeginForm("Login", "User", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-
-    <div class="form-group row justify-content-center">
-        @Html.LabelFor(m=>m.Login_Name, new { @class = "col-md-3 col-form-label"})
-        <div class="col-md-9">
-            @Html.TextBoxFor(m => m.Login_Name, new { @class = "form-control", id = "signInUsername"})
+<canvas id="canvas"></canvas>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/Content/images/logo.png" id="icon" alt="User Icon" />
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-9 offset-md-3">
+
+        <!-- Login Form -->
+        @using (Html.BeginForm("Login", "User", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.TextBoxFor(m => m.Login_Name, new { @class = "fadeIn second", id = "signInUsername", placeholder = "Username" })
             @Html.ValidationMessageFor(model => model.Login_Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group row">
-        @Html.LabelFor(m=>m.User_Password, new { @class = "col-md-3 col-form-label"})
-        <div class="col-md-9">
-            @Html.TextBoxFor(m=>m.User_Password, new { @class = "form-control", id = "signInPassword"})
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-9 offset-md-3">
+            @Html.PasswordFor(m => m.User_Password, new { @class = "fadeIn third", id = "signInPassword", placeholder = "Password" })
             @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group form-check row">
+                <label class="form-check-label col-md-9" for="signInCheckbox">
+                    <input type="checkbox" class="form-check-input" id="signInCheckbox">Remember me
+                </label>
+            </div>
+            <input type="submit" class="LandingPageBtn fadeIn fourth" value="Sign In">
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                New to our website? @Html.ActionLink("Join Us", "Register", "User", new { @class = "underlineHover" })
+            </div>
+        }
     </div>
+</div>
 
-    <div class="form-group form-check row">
-        <label class="form-check-label col-md-9  offset-md-3" for="signInCheckbox">
-            <input type="checkbox" class="form-check-input" id="signInCheckbox">Remember me
-        </label>
-    </div>
-    <div class="form-group row">
-        <div class="offset-md-3 col-md-9">
-            <button type="submit" class="btn btn-primary ">Sign In</button>
-        </div>
-    </div>
-    <div class="form-group row">
-        <span class="offset-md-3 col-md-9">New to our website? @Html.ActionLink("Join Us", "Register", "User")</span>
-    </div>
+@section scripts{
+    <script src="~/Scripts/src/canvas.js"></script>
 }
-
-
-
-
