@@ -17,13 +17,11 @@ namespace JooleUI.Controllers
         IQueryable<tblProduct> products;
         public ActionResult Search(string searchString)
         {
-            if (products == null)
-            {
-                products = service.GetProductBySubCategory(searchString);
+            products = service.GetProductBySubCategory(searchString);
 
-            }
             List<tblProduct> list = new List<tblProduct>();
 
+            Session["searchString"] = searchString;
             if (products != null)
             {
                 foreach (var x in products)
@@ -38,11 +36,11 @@ namespace JooleUI.Controllers
 
         public ActionResult Save(FilterView filterView)
         {
-
+            string searchString = (string)Session["searchString"];
             var dataSet = service.GetTblProductsByFilter(filterView.startYear,
                 filterView.endYear, filterView.minAirflow, filterView.maxAirflow,
                 filterView.minPower, filterView.maxPower, filterView.minSound, filterView.maxSound, filterView.minFanDiameter,
-                filterView.maxFanDiameter);
+                filterView.maxFanDiameter, searchString);
             List<tblProduct> list = new List<tblProduct>();
             foreach (var x in dataSet)
             {
@@ -59,7 +57,5 @@ namespace JooleUI.Controllers
             // return View("Comps",Black(compare));
             return RedirectToAction("Black", "Home");
         }
-
-
     }
 }

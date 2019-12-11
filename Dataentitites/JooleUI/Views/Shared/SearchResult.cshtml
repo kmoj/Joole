@@ -7,8 +7,8 @@
 
 <div class="container col-12">
 
-    <div class="row ">
-        <form class="form-inline" action="@Url.Action("SearchResult","Filter")">
+    <div class="row col-12 ">
+        <form class="form-inline col-12" action="@Url.Action("SearchResult","Filter")">
 
             @foreach (var item in Model)
             {
@@ -33,7 +33,7 @@
 
                     <div class="card-body row">
                         <div class="col-7">
-                            <input type="radio" name="compare" value="@item.Product_ID" /> Compare
+                            <input type="checkbox" name="compare" value="@item.Product_ID" /> <b>Compare</b>
                         </div>
                         <div class="col-5">
                             <input class="btn btn-primary" type="submit" value="Add to">
@@ -43,9 +43,9 @@
                 </div>
 
             }
-
-
         </form>
     </div>
-
 </div>
+
+
+

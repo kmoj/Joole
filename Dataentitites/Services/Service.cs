@@ -49,7 +49,8 @@ namespace Services
                         return false;
                     }
                 }
-            }else
+            }
+            else
             {
                 return false;
             }
@@ -67,7 +68,7 @@ namespace Services
             temp.Credential_ID = 1;
             uow.users.add(temp);
         }
-        
+
         /*
          * This method will take username and email to perform the query and
          * return filtered list based on the given paramenter
@@ -81,7 +82,7 @@ namespace Services
             if (checker(uname) == "email")
             {
                 temp.User_Email = uname;
-                
+
             }
             else
             {
@@ -133,7 +134,7 @@ namespace Services
                 return null;
         }
 
-        public tblUser GetUser(int id) 
+        public tblUser GetUser(int id)
         {
             return uow.users.Find(id);
         }
@@ -183,7 +184,7 @@ namespace Services
         {
 
             var a = uow.products.Find(c);
-           
+
             return a;
         }
 
@@ -215,10 +216,19 @@ namespace Services
             return uow.types.DataSet(filter);
         }
 
-        public IEnumerable<tblProduct> GetTblProductsByFilter(string startYear, string endYear, int minAirflow, int maxAirflow, int minPower, int maxPower, int minSound, int maxSound, int minFanDiameter, int maxFanDiameters)
+        //public IEnumerable<tblProduct> GetTblProductsByFilter(string startYear, string endYear, int minAirflow, int maxAirflow, int minPower, int maxPower, int minSound, int maxSound, int minFanDiameter, int maxFanDiameters)
+        //{
+        //    return uow.searchFilter.GetListByFilter(startYear, endYear, minAirflow, maxAirflow, maxPower
+        //        , minPower, minSound, maxSound, minFanDiameter, maxFanDiameters);
+        //}
+
+        public IEnumerable<tblProduct> GetTblProductsByFilter(string startYear, string endYear, int minAirflow, int maxAirflow, int minPower, int maxPower, int minSound, int maxSound, int minFanDiameter, int maxFanDiameters, string searchString)
         {
-            return uow.searchFilter.GetListByFilter(startYear, endYear, minAirflow, maxAirflow, maxPower
+
+            var res = uow.searchFilter.GetListByFilter(startYear, endYear, minAirflow, maxAirflow, maxPower
                 , minPower, minSound, maxSound, minFanDiameter, maxFanDiameters);
+            return res.Where(p => p.Product_Name.Contains(searchString) || p.tblSubCategory.SubCategory_Name.Contains(searchString));
+
         }
     }
 }

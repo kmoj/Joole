@@ -42,6 +42,7 @@ namespace JooleUI.Controllers
         {
             Service serv = new Service();
             List<tblProduct> products = serv.GetProductByNameCateId(productName, category).ToList();
+            Session["searchString"] = productName;
             return View("~/Views/Filter/Search.cshtml", products);
         }
     }

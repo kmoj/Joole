@@ -168,7 +168,7 @@
             $.ajax({
                 type: "post",
                 contentType: "application/json",
-                url: "@Url.Action("Save")",
+                url: "@Url.Action("Save", "Filter")",
                 data: JSON.stringify(data),
                 success: function (result) {
 
@@ -182,7 +182,5 @@
             });
 
         }
-        s
     </script>
-
-}s
+}
