@@ -11,9 +11,7 @@ namespace Services
 {
     public class Service
     {
-        
-        static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient; provider connection string='data source=DESKTOP-EROQ1RP\\SQLEXPRESS;initial catalog=Joole;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework'";
-        //static string vals = "'Data Source=DESKTOP-EROQ1RP\\SQLEXPRESS;Initial Catalog=TropicalServer;Integrated Security=True' providerName='System.Data.SqlClient'";
+        static string vals = "metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.1.5;initial catalog=JooleJLTY;persist security info=True;user id=T_User;password=us1;MultipleActiveResultSets=True;App=EntityFramework'";
         static DbContext context = new DbContext(vals);
 
         UnitofWork uow = new UnitofWork(context);
@@ -57,7 +55,7 @@ namespace Services
             }
         }
 
-        public void createUser(string uname, string uemail, string upass)
+        public void createUser(string uname, string uemail, string upass, string uimageUlr)
         {
             tblUser temp = new tblUser();
             temp.User_Name = uname;
@@ -65,7 +63,7 @@ namespace Services
             temp.User_Password = upass;
             //byte[] imgdata = System.IO.File.ReadAllBytes(HttpContext.Current.Server.MapPath("C:\\Users\\thekm\\Desktop\\Joole\\Joole-developer\\Dataentitites\\JooleUI\\Images\\52.jpg));
             //temp.User_Image = imgdata;
-            temp.User_Image = System.Text.Encoding.UTF8.GetBytes("1");
+            temp.User_Image = uimageUlr;
             temp.Credential_ID = 1;
             uow.users.add(temp);
         }
@@ -120,6 +118,12 @@ namespace Services
             List<tblUser> fliteredList = filteredList(uname, upass);
             return fliteredList.First().User_ID;
         }
+
+        public string getUserImgUrl(string uname, string upass)
+        {
+            List<tblUser> fliteredList = filteredList(uname, upass);
+            return fliteredList.First().User_Image;
+        }
         public string Value()
         {
             var a = uow.users.Find(1);
@@ -127,6 +131,11 @@ namespace Services
                 return a.User_Name;
             else
                 return null;
+        }
+
+        public tblUser GetUser(int id) 
+        {
+            return uow.users.Find(id);
         }
 
         public string ProductValue()
@@ -154,6 +163,16 @@ namespace Services
         {
             string result = uow.products.Search(s);
             return result;
+        }
+
+        public IEnumerable<tblProduct> GetProductByNameCateId(string name, int cateId)
+        {
+            return uow.products.SearchProductByNameCateId(name, cateId);
+        }
+
+        public IQueryable<tblProduct> GetProductBySubCategory(string subcategory)
+        {
+            return uow.searchFilter.getProductsBySubCategory(subcategory);
         }
 
         public IQueryable<tblProduct> GetDataSet(string filter)
@@ -194,6 +213,12 @@ namespace Services
         public IQueryable<tblType> GetTypeDataSet(string filter)
         {
             return uow.types.DataSet(filter);
+        }
+
+        public IEnumerable<tblProduct> GetTblProductsByFilter(string startYear, string endYear, int minAirflow, int maxAirflow, int minPower, int maxPower, int minSound, int maxSound, int minFanDiameter, int maxFanDiameters)
+        {
+            return uow.searchFilter.GetListByFilter(startYear, endYear, minAirflow, maxAirflow, maxPower
+                , minPower, minSound, maxSound, minFanDiameter, maxFanDiameters);
         }
     }
 }

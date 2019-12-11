@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JooleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -13,30 +13,30 @@
           <Property Name="principal_id" Type="int" Nullable="false" />
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="definition" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="tblCategory">
           <Key>
             <PropertyRef Name="Category_ID" />
           </Key>
           <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category_Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Category_Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="tblCredential">
           <Key>
             <PropertyRef Name="Credential_ID" />
           </Key>
           <Property Name="Credential_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_Type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_Type" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="tblManufacturer">
           <Key>
             <PropertyRef Name="Manufacturer_ID" />
           </Key>
           <Property Name="Manufacturer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Manufacturer_Name" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Manufacturer_Department" Type="nchar" MaxLength="10" />
-          <Property Name="Manufacturer_Web" Type="nchar" MaxLength="10" />
+          <Property Name="Manufacturer_Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Manufacturer_Department" Type="varchar" MaxLength="10" />
+          <Property Name="Manufacturer_Web" Type="varchar" MaxLength="10" />
           <Property Name="User_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblProduct">
@@ -46,12 +46,17 @@
           <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Manufacturer_ID" Type="int" Nullable="false" />
           <Property Name="SubCategory_ID" Type="int" Nullable="false" />
-          <Property Name="Product_Name" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Product_Image" Type="image" />
-          <Property Name="Series" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Model" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Product_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Product_Image" Type="varchar" MaxLength="200" />
+          <Property Name="Series" Type="varchar" MaxLength="100" />
+          <Property Name="Model" Type="varchar" MaxLength="100" />
           <Property Name="ProductTypeID" Type="int" Nullable="false" />
           <Property Name="Characteristics" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AirFLow" Type="int" Nullable="false" />
+          <Property Name="PowerMax" Type="int" Nullable="false" />
+          <Property Name="PowerMin" Type="int" Nullable="false" />
+          <Property Name="MaxSpeedSound" Type="int" Nullable="false" />
+          <Property Name="SweepDiameter" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSubCategory">
           <Key>
@@ -59,29 +64,29 @@
           </Key>
           <Property Name="SubCategory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Category_ID" Type="int" Nullable="false" />
-          <Property Name="SubCategory_Name" Type="nchar" MaxLength="10" />
-          <Property Name="SubCategoryFilter" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubCategory_Name" Type="varchar" MaxLength="10" />
+          <Property Name="SubCategoryFilter" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="tblType">
           <Key>
             <PropertyRef Name="ProductTypeID" />
           </Key>
           <Property Name="ProductTypeID" Type="int" Nullable="false" />
-          <Property Name="UseType" Type="nchar" MaxLength="10" />
-          <Property Name="Application" Type="nchar" MaxLength="10" />
-          <Property Name="MountingLocation" Type="nchar" MaxLength="10" />
-          <Property Name="Accessories" Type="nchar" MaxLength="10" />
-          <Property Name="ModelYear" Type="nchar" MaxLength="10" />
+          <Property Name="UseType" Type="varchar" MaxLength="10" />
+          <Property Name="Application" Type="varchar" MaxLength="10" />
+          <Property Name="MountingLocation" Type="varchar" MaxLength="10" />
+          <Property Name="Accessories" Type="varchar" MaxLength="10" />
+          <Property Name="ModelYear" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_Name" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="User_Email" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="User_Image" Type="image" />
-          <Property Name="User_Password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" />
+          <Property Name="User_Email" Type="varchar" MaxLength="50" />
+          <Property Name="User_Image" Type="varchar" MaxLength="200" />
+          <Property Name="User_Password" Type="varchar" MaxLength="50" />
           <Property Name="Credential_ID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblManufacturer_tblUser">
@@ -156,7 +161,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="JooleModelStoreContainer">
+        <EntityContainer Name="Model1StoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCategory" EntityType="Self.tblCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCredential" EntityType="Self.tblCredential" Schema="dbo" store:Type="Tables" />
@@ -190,11 +195,10 @@
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="JooleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -203,14 +207,14 @@
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="definition" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblCategory">
           <Key>
             <PropertyRef Name="Category_ID" />
           </Key>
           <Property Name="Category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Category_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblSubCategories" Relationship="Self.FK_tblSubCategory_tblCategory" FromRole="tblCategory" ToRole="tblSubCategory" />
         </EntityType>
         <EntityType Name="tblCredential">
@@ -218,7 +222,7 @@
             <PropertyRef Name="Credential_ID" />
           </Key>
           <Property Name="Credential_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="User_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUser_tblCredential" FromRole="tblCredential" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblManufacturer">
@@ -226,9 +230,9 @@
             <PropertyRef Name="Manufacturer_ID" />
           </Key>
           <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Manufacturer_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Manufacturer_Department" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Manufacturer_Web" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Manufacturer_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manufacturer_Department" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Manufacturer_Web" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="User_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblUser" Relationship="Self.FK_tblManufacturer_tblUser" FromRole="tblManufacturer" ToRole="tblUser" />
           <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblManufacturer" FromRole="tblManufacturer" ToRole="tblProduct" />
@@ -240,12 +244,17 @@
           <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" />
           <Property Name="SubCategory_ID" Type="Int32" Nullable="false" />
-          <Property Name="Product_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Product_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Series" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Product_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Series" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
           <Property Name="Characteristics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AirFLow" Type="Int32" Nullable="false" />
+          <Property Name="PowerMax" Type="Int32" Nullable="false" />
+          <Property Name="PowerMin" Type="Int32" Nullable="false" />
+          <Property Name="MaxSpeedSound" Type="Int32" Nullable="false" />
+          <Property Name="SweepDiameter" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblManufacturer" Relationship="Self.FK_tblProduct_tblManufacturer" FromRole="tblProduct" ToRole="tblManufacturer" />
           <NavigationProperty Name="tblSubCategory" Relationship="Self.FK_tblProduct_tblSubCategory" FromRole="tblProduct" ToRole="tblSubCategory" />
           <NavigationProperty Name="tblType" Relationship="Self.FK_tblProduct_tblType" FromRole="tblProduct" ToRole="tblType" />
@@ -256,8 +265,8 @@
           </Key>
           <Property Name="SubCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Category_ID" Type="Int32" Nullable="false" />
-          <Property Name="SubCategory_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="SubCategoryFilter" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SubCategory_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SubCategoryFilter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblCategory" Relationship="Self.FK_tblSubCategory_tblCategory" FromRole="tblSubCategory" ToRole="tblCategory" />
           <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblSubCategory" FromRole="tblSubCategory" ToRole="tblProduct" />
         </EntityType>
@@ -266,11 +275,11 @@
             <PropertyRef Name="ProductTypeID" />
           </Key>
           <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
-          <Property Name="UseType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Application" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="MountingLocation" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Accessories" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ModelYear" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UseType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Application" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MountingLocation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Accessories" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ModelYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblType" FromRole="tblType" ToRole="tblProduct" />
         </EntityType>
         <EntityType Name="tblUser">
@@ -278,10 +287,10 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="User_Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="User_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="User_Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Credential_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblCredential" Relationship="Self.FK_tblUser_tblCredential" FromRole="tblUser" ToRole="tblCredential" />
           <NavigationProperty Name="tblManufacturers" Relationship="Self.FK_tblManufacturer_tblUser" FromRole="tblUser" ToRole="tblManufacturer" />
@@ -397,9 +406,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="JooleModelStoreContainer" CdmEntityContainer="JooleEntities">
+        <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="JooleEntities">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="JooleModel.sysdiagram">
+            <EntityTypeMapping TypeName="Model1.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -410,7 +419,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblCategories">
-            <EntityTypeMapping TypeName="JooleModel.tblCategory">
+            <EntityTypeMapping TypeName="Model1.tblCategory">
               <MappingFragment StoreEntitySet="tblCategory">
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
@@ -418,7 +427,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblCredentials">
-            <EntityTypeMapping TypeName="JooleModel.tblCredential">
+            <EntityTypeMapping TypeName="Model1.tblCredential">
               <MappingFragment StoreEntitySet="tblCredential">
                 <ScalarProperty Name="Credential_ID" ColumnName="Credential_ID" />
                 <ScalarProperty Name="User_Type" ColumnName="User_Type" />
@@ -426,7 +435,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblManufacturers">
-            <EntityTypeMapping TypeName="JooleModel.tblManufacturer">
+            <EntityTypeMapping TypeName="Model1.tblManufacturer">
               <MappingFragment StoreEntitySet="tblManufacturer">
                 <ScalarProperty Name="Manufacturer_ID" ColumnName="Manufacturer_ID" />
                 <ScalarProperty Name="Manufacturer_Name" ColumnName="Manufacturer_Name" />
@@ -437,7 +446,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProducts">
-            <EntityTypeMapping TypeName="JooleModel.tblProduct">
+            <EntityTypeMapping TypeName="Model1.tblProduct">
               <MappingFragment StoreEntitySet="tblProduct">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Manufacturer_ID" ColumnName="Manufacturer_ID" />
@@ -448,11 +457,16 @@
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="Characteristics" ColumnName="Characteristics" />
+                <ScalarProperty Name="AirFLow" ColumnName="AirFLow" />
+                <ScalarProperty Name="PowerMax" ColumnName="PowerMax" />
+                <ScalarProperty Name="PowerMin" ColumnName="PowerMin" />
+                <ScalarProperty Name="MaxSpeedSound" ColumnName="MaxSpeedSound" />
+                <ScalarProperty Name="SweepDiameter" ColumnName="SweepDiameter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSubCategories">
-            <EntityTypeMapping TypeName="JooleModel.tblSubCategory">
+            <EntityTypeMapping TypeName="Model1.tblSubCategory">
               <MappingFragment StoreEntitySet="tblSubCategory">
                 <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
@@ -462,7 +476,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblTypes">
-            <EntityTypeMapping TypeName="JooleModel.tblType">
+            <EntityTypeMapping TypeName="Model1.tblType">
               <MappingFragment StoreEntitySet="tblType">
                 <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
                 <ScalarProperty Name="UseType" ColumnName="UseType" />
@@ -474,7 +488,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="JooleModel.tblUser">
+            <EntityTypeMapping TypeName="Model1.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="User_Name" ColumnName="User_Name" />

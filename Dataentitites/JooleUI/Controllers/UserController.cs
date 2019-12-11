@@ -12,68 +12,83 @@ namespace JooleUI.Controllers
 {
     public class UserController : Controller
     {
-        /*
-         * 
-         * This method will be called by the page when the user load the page at first. 
-         */
-        [HttpGet]
-        public ActionResult LoginPage()
+
+        public ActionResult Index()
         {
-            UserLogin temp = new UserLogin();
-            return View(temp);
+            return View("Login");
         }
 
-        /*
-         *
-         * This method will retrive the login information from user and check if the login is accurate
-         */
+        [HttpGet]
+        public PartialViewResult Login()
+        {
+            UserLogin temp = new UserLogin();
+            return PartialView(temp);
+        }
+
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "User");
+        }
+
         [HttpPost]
-        public ActionResult LoginPage(UserLogin temp)
+        public ActionResult Login(UserLogin temp)
         {
             Service serv = new Service();
+
             if (ModelState.IsValid)
             {
-                    if (serv.authentication(temp.Login_Name, temp.User_Password))
-                    {
-                        Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
+                if (serv.authentication(temp.Login_Name, temp.User_Password))
+                {
+                    Session["userID"] = serv.getSessionID(temp.Login_Name, temp.User_Password);
+                    Session["userName"] = temp.Login_Name;
+                    Session["userImgUrl"] = serv.getUserImgUrl(temp.Login_Name, temp.User_Password);
                     //return RedirectToAction("Summary", "Product");
                     return RedirectToAction("Index", "Search");
                 }
-                    else
-                    {
-                        temp.LoginErrorMessage = "Incrrect username or password.";
-                        return View("LoginPage", temp);
-                    }
-            }
-            return View();
-        }
-
-        public JsonResult CreateUserRequest(string uname, string uemail, string upass)
-        {
-            string c = Server.MapPath("Images");
-            var file = Request.Files;
-            //string path = Path.Combine(Server.MapPath("~/Images/Users"), Path.GetFileName(file.FileName));
-            Service serv = new Service();
-            serv.createUser(uname, uemail, upass);
-
-            var chak = JsonConvert.SerializeObject("OK");
-
-            return Json(chak, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult FileUploads(string qqfile)
-        {
-            foreach (string file in Request.Files)
-            {
-                HttpPostedFileBase uploadFile = Request.Files[file] as HttpPostedFileBase;
-                if (uploadFile != null && uploadFile.ContentLength > 0)
+                else
                 {
-                    var fileName = Path.GetFileName(uploadFile.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images"), fileName);
-                    uploadFile.SaveAs(path);
+                    temp.LoginErrorMessage = "Incrrect username or password.";
+                    return View("Login", temp);
                 }
             }
-            return RedirectToAction("User");
+            return PartialView();
         }
+
+        [HttpGet]
+        public PartialViewResult Register()
+        {
+            UserRegister user = new UserRegister();
+            return PartialView(user);
+        }
+
+        [HttpPost]
+        public ActionResult Register(UserRegister user)
+        {
+
+            if (ModelState.IsValid)
+            {
+                Service serv = new Service();
+                var imageUrl = "/Images/User/default.png";
+                if (user.userImgUrl != null && user.userImgUrl.ContentLength > 0)
+                    {
+                    var uploadDir = "~/Images/User/";
+                    DateTime uploadTime = DateTime.UtcNow;
+                    String imageName = uploadTime.ToString("yyyyMMddHHmmssffff") + user.userImgUrl.FileName;
+                    var imagePath = Path.Combine(Server.MapPath(uploadDir), imageName);
+                    imageUrl = Path.Combine(uploadDir, imageName);
+                    user.userImgUrl.SaveAs(imagePath);
+                }
+                serv.createUser(user.userName, user.userEmail, user.userPassword, imageUrl.TrimStart('~'));
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                user.RegisterErrorMessage = "Please check your information.";
+                return PartialView(user);
+            }
+        }
+
     }
 }

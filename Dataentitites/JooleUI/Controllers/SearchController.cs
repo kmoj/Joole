@@ -16,32 +16,16 @@ namespace JooleUI.Controllers
         public ActionResult Index(int? value)
         {
             List<Category> listObj = new List<Category>();
-            //List<SubCategory> subCateList = new List<SubCategory>();
-            //Dictionary<string, List<string>> cateAndSubCate = new Dictionary<string, List<string>>();
-            foreach (var tempCatego in new Services.Service().getCategories())
+            Service serv = new Service();
+            foreach (var tempCatego in serv.getCategories())
             {
 
                 Category tempObj = new Category();
-                //SubCategory tempSubCategory = new SubCategory();
                 tempObj.Category_ID = tempCatego.Category_ID;
                 tempObj.Category_Name = tempCatego.Category_Name;
-                //string categoryVal = tempCatego.Category_Name;
-
-                /*
-                List<string> subCategoList = new List<string>();
-                foreach (var temp in new Services.Service().GetSubCategories(tempCatego.Category_ID))
-                {
-                    subCategoList.Add(temp.SubCategory_Name);
-                }*/
-                //tempSubCategory.SubCategory_Name = subCategoList;
-                //listObj.Add(tempSearchObj);
-                //cateAndSubCate.Add(categoryVal, subCategoList);
                 listObj.Add(tempObj);
-                //subCateList.Add()
 
             }
-            //var asdfw = cateAndSubCate.Values;
-            //var asdf = cateAndSubCate.Keys;
             ViewBag.Category = new SelectList(listObj, "Category_ID", "Category_Name");
 
 
@@ -58,11 +42,6 @@ namespace JooleUI.Controllers
                 tempSubCategory.SubCategory_Name = subCategoList;
                 ViewBag.subCategory = new SelectList(subCategoList);
             }
-            //var asdf = JsonConvert.SerializeObject(cateAndSubCate);
-
-
-            //return Json(asdf, JsonRequestBehavior.AllowGet);
-            //Category temp = new Category();
             return View();
         }
 
@@ -71,18 +50,17 @@ namespace JooleUI.Controllers
         {
             if (string.IsNullOrEmpty(term))
             {
-                //search based on the category
-                return RedirectToAction("Summary", "Product",new { searchString = term });
+                return RedirectToAction("Search", "Filter",new { searchString = term });
 
             }
             else
             {
-                return RedirectToAction("Summary", "Product", new { searchString = term });
+                return RedirectToAction("Search", "Filter", new { searchString = term });
             }
         }
 
 
-        public JsonResult Autocomplete(string term,string Category)
+        public JsonResult GetSubcategory(string term,string Category)
         {
             List<string> filteredItems = new List<string>();
             Service serv = new Service();

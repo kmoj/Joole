@@ -36,5 +36,6 @@ namespace RepoBLL
         public IProduct products => new ProductRepo(context);
         public IType types => new TypeRepo(context);
 
+        public ISearchFilterRepo searchFilter => new SearchFilterRepo(context);
     }
 }
