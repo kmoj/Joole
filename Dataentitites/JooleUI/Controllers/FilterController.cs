@@ -17,6 +17,11 @@ namespace JooleUI.Controllers
         IQueryable<tblProduct> products;
         public ActionResult Search(string searchString)
         {
+            if (searchString == "__clear")
+            {
+                searchString = (string)Session["searchString"];
+            }
+
             products = service.GetProductBySubCategory(searchString);
 
             List<tblProduct> list = new List<tblProduct>();

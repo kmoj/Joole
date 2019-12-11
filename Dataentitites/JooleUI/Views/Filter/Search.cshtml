@@ -22,7 +22,7 @@
                         <button type="submit" class="btn btn-primary " id="save" onclick="search()">Save</button>
                     </div>
                     <div class="col-4">
-                        <a class="btn btn-primary " href="@Url.Action("Search")">Clear</a>
+                        <a class="btn btn-primary " href="@Url.Action("Search", new { searchString = "__clear" })">Clear</a>
                     </div>
                 </div>
             </div>
