@@ -6,22 +6,26 @@
 
 
 
-    <div style="margin-top:10%">
+<div class="row justify-content-center" style="padding:8%;">
+    <div class="col-xl-5 col-lg-7 col-md-8 col-sm-9">
+        <div class="text-center">
+            @using (@Html.BeginForm())
+            {
+                <img style="width:30%" src="~/Content/images/logo.png" />
+                <h3 style="font-family: 'Lobster', cursive;">Building Product Selection Platform</h3>
+                @Html.DropDownList("Category", null, "Select", new { @class = "btn btn-secondary dropdown-toggle" });
+                <select id="subCateSelector" style="width:250px;" class="btn btn-secondary dropdown-toggle" name="term">
+                    <option default>Select Subcategory</option>
+                </select>
+                @*<input type="search" id="searchBox" style="width:250px" name="term" />*@
+                <input type="submit" value="Search" class="btn btn-primary" />
+            }
+        </div>
+    </div>
 
-        @using (@Html.BeginForm())
-        {
-            <img style="width:30%" src="~/Content/images/logo.png" />
-            <h3 style="font-family: 'Lobster', cursive;">Building Product Selection Platform</h3>
-            @Html.DropDownList("Category", null, "Select", new { @class = "btn btn-secondary dropdown-toggle" });
-            <select id="subCateSelector" style="width:250px;" class="btn btn-secondary dropdown-toggle" name="term">
-                <option default>Select Subcategory</option>
-            </select>
-            @*<input type="search" id="searchBox" style="width:250px" name="term" />*@
-            <input type="submit" value="Search" class="btn btn-primary" />
-        }
 
-        @section scripts{
-            <script>
+    @section scripts{
+        <script>
 
             $("#Category").on("change", () => {
                 $.ajax({
@@ -44,9 +48,9 @@
                     error: () => { console.log("error") }
                 });
             });
-            </script>
-        }
-    </div>
+        </script>
+    }
+</div>
 
 @{
 

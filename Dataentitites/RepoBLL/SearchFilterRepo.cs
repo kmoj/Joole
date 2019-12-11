@@ -12,6 +12,7 @@ namespace RepoBLL
 {
     public interface ISearchFilterRepo:IRepo<tblProduct> 
     {
+        IQueryable<tblProduct> getProductsBySubCategory(string subCategory);
         IQueryable<tblProduct> GetListByFilter(string startYear,string endYear,int minAirflow,int maxAirflow,int minPower,int maxPower,int minSound,int maxSound,int minFanDiameter, int maxFanDiameters);
     }
 
@@ -73,6 +74,12 @@ namespace RepoBLL
             return result;
         }
 
-        
+        public IQueryable<tblProduct> getProductsBySubCategory(string subCategory) 
+        {
+            var result = dbSet.Where(p => p.tblSubCategory.SubCategory_Name == subCategory);
+            return result;
+        }
+
+
     }
 }

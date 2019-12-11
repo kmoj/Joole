@@ -2,7 +2,11 @@
 /* BASIC */
 
 html {
-    
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -27,6 +31,14 @@ h2 {
     color: #cccccc;
 }
 
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 
 
 /* STRUCTURE */
@@ -64,6 +76,9 @@ h2 {
     border-radius: 0 0 10px 10px;
 }
 
+.footer {
+    height: 5vh;
+}
 
 
 /* TABS */
@@ -103,19 +118,19 @@ h2.active {
     transition: all 0.3s ease-in-out;
 }
 
-.LandingPageBtn:hover {
-    background-color: #39ace7;
-}
+    .LandingPageBtn:hover {
+        background-color: #39ace7;
+    }
 
-.LandingPageBtn:active {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    transform: scale(0.95);
-}
+    .LandingPageBtn:active {
+        -moz-transform: scale(0.95);
+        -webkit-transform: scale(0.95);
+        -o-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+        transform: scale(0.95);
+    }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=file] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -136,14 +151,14 @@ input[type=text], input[type=password] {
     border-radius: 5px 5px 5px 5px;
 }
 
-    input[type=text], input[type=password]:focus {
+    input[type=text], input[type=password], input[type=file]:focus {
         background-color: #fff;
         border-bottom: 2px solid #5fbae9;
     }
 
-    input[type=text], input[type=password]:placeholder {
-        color: #cccccc;
-    }
+        input[type=text], input[type=password]:placeholder {
+            color: #cccccc;
+        }
 
 
 
@@ -285,10 +300,4 @@ input[type=text], input[type=password] {
 
 #icon {
     width: 60%;
-}
-
-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
 }

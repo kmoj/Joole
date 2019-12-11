@@ -8,6 +8,7 @@
     ViewBag.Title = "Register with Us";
 }
 
+<canvas id="canvas"></canvas>
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <!-- Tabs Titles -->
@@ -20,7 +21,7 @@
         <form action="@Url.Action("Register","User")" method="post" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
-            @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "fadeIn form-control", id = "registerUserImage", accept="image/*" })
+            @Html.TextBoxFor(model => model.userImgUrl, new { type = "file", @class = "fadeIn second", id = "registerUserImage", accept = "image/*" })
             @Html.TextBoxFor(model => model.userName, new { @class = "fadeIn second", id = "registerUsername", placeholder = "Username" })
             @Html.TextBoxFor(model => model.userEmail, new { @class = "fadeIn third", id = "registerEmail", placeholder = "Email" })
             @Html.PasswordFor(model => model.userPassword, new { @class = "fadeIn fourth", id = "registerPassword", placeholder = "Password" })
@@ -36,6 +37,7 @@
 </div>
 
 @section scripts{
+    <script src="~/Scripts/src/canvas.js"></script>
     <script>
         $("#registerUserImage").on("change", function (e) {
             var file = e.target.files[0];

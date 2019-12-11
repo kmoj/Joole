@@ -15,11 +15,11 @@ namespace JooleUI.Controllers
 
         Service service = new Service();
         IQueryable<tblProduct> products;
-        public ActionResult Search(string SubCateogry)
+        public ActionResult Search(string searchSrting)
         {
             if (products == null)
             {
-                products = service.GetDataSet(SubCateogry);
+                products = service.GetProductBySubCategory(searchSrting);
 
             }
             List<tblProduct> list = new List<tblProduct>();

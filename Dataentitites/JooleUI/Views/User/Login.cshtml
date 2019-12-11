@@ -5,37 +5,38 @@
     ViewBag.Title = "Joole";
 }
 
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <img src="~/Content/images/logo.png" id="icon" alt="User Icon" />
-            </div>
-
-            <!-- Login Form -->
-            @using (Html.BeginForm("Login", "User", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-
-                @Html.TextBoxFor(m => m.Login_Name, new { @class = "fadeIn second", id = "signInUsername", placeholder = "Username" })
-                @Html.ValidationMessageFor(model => model.Login_Name, "", new { @class = "text-danger" })
-                @Html.PasswordFor(m => m.User_Password, new { @class = "fadeIn third", id = "signInPassword", placeholder = "Password" })
-                @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
-                <div class="form-group form-check row">
-                    <label class="form-check-label col-md-9" for="signInCheckbox">
-                        <input type="checkbox" class="form-check-input" id="signInCheckbox">Remember me
-                    </label>
-                </div>
-                <input type="submit" class="LandingPageBtn fadeIn fourth" value="Sign In">
-                <!-- Remind Passowrd -->
-                <div id="formFooter">
-                    New to our website? @Html.ActionLink("Join Us", "Register", "User", new { @class = "underlineHover" })
-                </div>
-            }
+<canvas id="canvas"></canvas>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/Content/images/logo.png" id="icon" alt="User Icon" />
         </div>
+
+        <!-- Login Form -->
+        @using (Html.BeginForm("Login", "User", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.TextBoxFor(m => m.Login_Name, new { @class = "fadeIn second", id = "signInUsername", placeholder = "Username" })
+            @Html.ValidationMessageFor(model => model.Login_Name, "", new { @class = "text-danger" })
+            @Html.PasswordFor(m => m.User_Password, new { @class = "fadeIn third", id = "signInPassword", placeholder = "Password" })
+            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+            <div class="form-group form-check row">
+                <label class="form-check-label col-md-9" for="signInCheckbox">
+                    <input type="checkbox" class="form-check-input" id="signInCheckbox">Remember me
+                </label>
+            </div>
+            <input type="submit" class="LandingPageBtn fadeIn fourth" value="Sign In">
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                New to our website? @Html.ActionLink("Join Us", "Register", "User", new { @class = "underlineHover" })
+            </div>
+        }
     </div>
+</div>
 
-
-
-
+@section scripts{
+    <script src="~/Scripts/src/canvas.js"></script>
+}
